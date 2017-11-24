@@ -1,0 +1,38 @@
+.card-block {
+  overflow-y: auto;
+  button {
+    background: rgb(32,158,145);
+    color: rgb(255, 255, 255);
+  }
+}
+
+;
+.card-footer {
+  background-color: #fff;
+  border-top: 0 none;
+}
+
+;
+.nav-item {
+  padding: 1rem 0rem;
+  border-bottom: 0.5rem solid #ccc;
+}
+
+;
+.active {
+  font-weight: bold;
+  color: black;
+  border-bottom-color: rgb(32, 158, 145) !important;
+}
+
+;
+.enabled {
+  border-bottom-color: rgb(0, 196, 194);
+}
+
+;
+.disabled {
+  color: #ccc;
+}
+
+;

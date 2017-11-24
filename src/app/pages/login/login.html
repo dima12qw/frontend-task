@@ -1,0 +1,251 @@
+<ba-page-top></ba-page-top>
+<div class="auth-main">
+  <div class="auth-block col-xl-9 col-lg-9 col-md-9 col-sm-9">
+    <baWizzard>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <form [formGroup]="formLocInfo" (ngSubmit)="onSubmit(formLocInfo.value)">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="legal_name">"formLocinfo.denjur"</label>
+                  <input [formControl]="legal_name" type="text" class="form-control" id="legal_name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="comercial_name">"formLocinfo.dencom"</label>
+                  <input [formControl]="comercial_name" type="text" class="form-control" id="comercial_name">
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group">
+                  <label for="discount">"formLocinfo.discount"</label>
+                  <div class="input-group">
+                    <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount">
+                    <span class="input-group-addon addon-right input-group-addon-success">%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <ba-checkbox [(ngModel)]="isChecked" [label]="'Activarea bronarii'"
+                                 [ngModelOptions]="{standalone: true}"></ba-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="category">"formLocinfo.category"</label>
+                  <select [formControl]="category" type="text" class="form-control" id="category">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="avg_sum">"formLocinfo.avg_sum"</label>
+                  <select [formControl]="avg_sum" type="text" class="form-control" id="avg_sum">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="description_RO">"formLocInfo.descriptionRO"</label>
+                  <textarea [formControl]="description_RO" class="form-control" id="description_RO"></textarea>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="description_RU">"formLocInfo.descriptionRU"</label>
+                  <textarea [formControl]="description_RU" class="form-control" id="description_RU"></textarea>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </form>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Working Hours" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <form [formGroup]="formWorkHours" class="form-horizontal" (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
+            <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-2">"wHours.Monday"</label>
+                <input formControlName="hStart" class="offset-sm-1 col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('monday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('monday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('monday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('tuesday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Tuesday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('wednesday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Wednesday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('thursday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Thursday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('friday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Friday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('saturday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Saturday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('sunday')" class="form-horizontal">
+              <div class="form-group row">
+                <label for="monHStart" class="col-sm-3">"wHours.Sunday"</label>
+                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
+                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </form>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Contact Data" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <google-maps></google-maps>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <google-maps></google-maps>
+            </div>
+          </div>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+    </baWizzard>
+  </div>
+</div>

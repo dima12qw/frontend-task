@@ -1,0 +1,23 @@
+<div class="row">
+  <ul class="nav nav-justified">
+    <li class="nav-item col-md-{{12/steps.length}}" *ngFor="let step of steps"
+        [ngClass]="{'active': step.isActive, 'enabled': !step.isDisabled, 'disabled': step.isDisabled}">
+      <a (click)="goToStep(step)">{{step.title}}</a>
+    </li>
+  </ul>
+</div>
+<div class="card-block">
+  <ng-content></ng-content>
+  <br>
+  <div class="" [hidden]="isCompleted">
+    <button type="button" class="btn btn-secondary float-left" style="float:left" (click)="previous()"
+            [hidden]="!hasPrevStep || !activeStep.showPrev">Previous
+    </button>
+    <button type="button" class="btn btn-secondary float-right" style="float:right" (click)="next()"
+            [disabled]="!activeStep.isValid" [hidden]="!hasNextStep || !activeStep.showNext">Next
+    </button>
+    <button type="button" class="btn btn-secondary float-right" style="float:right" (click)="complete()"
+            [disabled]="!activeStep.isValid" [hidden]="hasNextStep">Done
+    </button>
+  </div>
+</div>
