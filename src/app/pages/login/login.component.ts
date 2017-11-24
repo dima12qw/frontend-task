@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '@angular/forms';
 
-
 @Component({
   selector: 'login',
   templateUrl: './login.html',
@@ -11,20 +10,22 @@ export class LoginComponent implements OnInit {
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
-  public formLocInfo: FormGroup;
-  public formWorkHours: FormGroup;
-  public legal_name: AbstractControl;
-  public comercial_name: AbstractControl;
-  public discount: AbstractControl;
-  public bron_activ: AbstractControl;
-  public category: AbstractControl;
-  public avg_sum: AbstractControl;
-  public description_RO: AbstractControl;
-  public description_RU: AbstractControl;
-  public submitted: boolean = false;
+  formLocInfo: FormGroup;
+  formWorkHours: FormGroup;
+  formContactData: FormGroup;
 
-  constructor(fbLocInfo: FormBuilder, fbWorkHours: FormBuilder) {
-    this.formLocInfo = fbLocInfo.group({
+  legal_name: AbstractControl;
+  comercial_name: AbstractControl;
+  discount: AbstractControl;
+  bron_activ: AbstractControl;
+  category: AbstractControl;
+  avg_sum: AbstractControl;
+  description_RO: AbstractControl;
+  description_RU: AbstractControl;
+  submitted: boolean = false;
+
+  constructor(builder: FormBuilder) {
+    this.formLocInfo = builder.group({
       'legal_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'comercial_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'discount': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -43,43 +44,53 @@ export class LoginComponent implements OnInit {
     this.description_RO = this.formLocInfo.controls['description_RO'];
     this.description_RU = this.formLocInfo.controls['description_RU'];
 
-    this.formWorkHours = fbWorkHours.group({
-      sunday: fbWorkHours.group({
+    this.formWorkHours = builder.group({
+      sunday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      monday: fbWorkHours.group({
+      monday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      tuesday: fbWorkHours.group({
+      tuesday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      wednesday: fbWorkHours.group({
+      wednesday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      thursday: fbWorkHours.group({
+      thursday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      friday: fbWorkHours.group({
+      friday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
-      saturday: fbWorkHours.group({
+      saturday: builder.group({
         hStart: [''],
         hFinish: [''],
         activity: [''],
       }),
     });
+
+    this.formContactData = builder.group({
+      cFirstName: [''],
+      cLastName: [''],
+      phoneNumber: [''],
+      country: [''],
+      city: [''],
+      street: [''],
+      postCode: ['']
+    })
 
   }
 
@@ -98,7 +109,7 @@ export class LoginComponent implements OnInit {
 
   onSelect(actType: string, f: FormGroup) {
     console.log(actType);
-    if (actType === 'Closed') {
+    if (actType === 'Closed' || actType === '24/24') {
       f.get('hStart').disable();
       f.get('hFinish').disable();
     }
@@ -111,7 +122,7 @@ export class LoginComponent implements OnInit {
     console.log(f);
   }
 
-  public onSubmitWorkHours(values: any): void {
+  public onSubmitWorkHours(values: Object): void {
     console.log(values);
   }
 }

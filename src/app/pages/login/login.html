@@ -1,6 +1,6 @@
 <ba-page-top></ba-page-top>
 <div class="auth-main">
-  <div class="auth-block col-xl-9 col-lg-9 col-md-9 col-sm-9">
+  <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
     <baWizzard>
       <baWizzardStep>
         <ba-card cardTitle="Location Info" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
@@ -221,10 +221,53 @@
         <ba-card cardTitle="Contact Data" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <google-maps></google-maps>
+            <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <form [formGroup]="formContactData" >
+                <div class="row">
+                  <div class="form-group">
+                    <label for="first_name">"formContactData.fname"</label>
+                    <input formControlName="cFirstName" type="text" class="form-control" id="first_name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="last_name">"formContactData.lname"</label>
+                    <input formControlName="cLastName" type="text" class="form-control" id="last_name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="phone_number">"formContactData.phNumber"</label>
+                    <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="country">"formContactData.country"</label>
+                    <input formControlName="country" type="text" class="form-control" id="country">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="city">"formContactData.city"</label>
+                    <input formControlName="city" type="text" class="form-control" id="city">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="street">"formContactData.street"</label>
+                    <input formControlName="street" type="text" class="form-control" id="street">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <label for="post_code">"formContactData.postCode"</label>
+                    <input formControlName="postCode" type="text" class="form-control" id="post_code">
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <google-maps></google-maps>
             </div>
           </div>

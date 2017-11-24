@@ -1,6 +1,5 @@
 import {AfterContentInit, Component, ContentChildren, EventEmitter, OnInit, Output, QueryList} from "@angular/core";
 import {baWizzardStepComponent} from "./baWizzardStep.component";
-
 @Component({
   selector: 'baWizzard',
   styleUrls: ['./baWizzard.scss'],
