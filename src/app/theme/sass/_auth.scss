@@ -20,8 +20,8 @@ $text-color: #ffffff;
   padding: 10px;
   h1 {
     font-weight: $font-light;
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 7px;
+    text-align: left;
   }
   p {
     font-size: 16px;
@@ -32,7 +32,7 @@ $text-color: #ffffff;
     transition: all 0.2s ease;
     color: $primary;
     &:hover {
-      color: $primary-dark;
+      color: $primary-light;
     }
   }
 
@@ -44,6 +44,14 @@ $text-color: #ffffff;
   .form-group {
     margin-bottom: 5px;
   }
+  ng-select .ng-control {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  ng-select.opened > .ng-control{
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
 }
 
 .auth-input {

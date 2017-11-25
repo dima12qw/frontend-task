@@ -1,15 +1,31 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '@angular/forms';
-
+import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
+import {MockdataService} from "./services/mockdata.service";
+import "style-loader!./login.scss";
 @Component({
   selector: 'login',
   templateUrl: './login.html',
-  styleUrls: ['./login.scss'],
+  // styleUrls: ['./login.scss'],
 })
 export class LoginComponent implements OnInit {
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
+
+  public defaultPicture = 'assets/img/theme/no-photo.png';
+  public profile:any = {
+    picture: ''
+  };
+  public uploaderOptions:NgUploaderOptions = {
+    // url: 'http://website.com/upload'
+    url: 'http://radikal.ru/Img/SaveImg2',
+    method: 'POST',
+
+  };
+
+  kitchenFilters;
+  selectedKitchen;
   formLocInfo: FormGroup;
   formWorkHours: FormGroup;
   formContactData: FormGroup;
@@ -24,7 +40,7 @@ export class LoginComponent implements OnInit {
   description_RU: AbstractControl;
   submitted: boolean = false;
 
-  constructor(builder: FormBuilder) {
+  constructor(builder: FormBuilder, protected mockData: MockdataService) {
     this.formLocInfo = builder.group({
       'legal_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'comercial_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -90,12 +106,15 @@ export class LoginComponent implements OnInit {
       city: [''],
       street: [''],
       postCode: ['']
-    })
+    });
 
+
+    this.kitchenFilters = this.mockData.getKitchenData();
   }
 
   ngOnInit() {
     console.log(this.formWorkHours);
+   console.log(this.kitchenFilters);
   }
 
   public onSubmit(values: Object): void {
@@ -124,5 +143,14 @@ export class LoginComponent implements OnInit {
 
   public onSubmitWorkHours(values: Object): void {
     console.log(values);
+  }
+
+
+  public removedKitchen(value:any):void {
+    console.log('Removed value is: ', value);
+  }
+
+  public refreshValueKitchen(value:any):void {
+    this.selectedKitchen = value;
   }
 }

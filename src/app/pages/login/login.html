@@ -275,11 +275,23 @@
       </baWizzardStep>
       <baWizzardStep>
         <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                 baCardClass="traffic-panel"></ba-card>
+                 baCardClass="traffic-panel">
+          <ba-picture-uploader  [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
+        </ba-card>
       </baWizzardStep>
       <baWizzardStep>
-        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                 baCardClass="traffic-panel"></ba-card>
+        <ba-card cardTitle="Filters" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <div class="class">
+          <h1>Specificati caracteristicile localului</h1>
+          <a>Bucatarie</a>
+            <ng-select  [multiple]="true"
+                        [items]="kitchenFilters"
+                        [(ngModel)]="selectedKitchen"
+                        placeholder="No filter selected"></ng-select>
+
+          </div>
+        </ba-card>
       </baWizzardStep>
       <baWizzardStep>
         <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
