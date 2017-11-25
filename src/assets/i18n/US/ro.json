@@ -1,0 +1,11 @@
+{
+  "step1":{
+    "cardTitle": "Informatii despre locatio",
+    "form":{
+      "labelLegalName": "Denumirea juridica",
+      "labelCommercialName": "Denumirea comerciala",
+      "labelDiscount": "Reducere StarNet"
+
+    }
+  }
+}

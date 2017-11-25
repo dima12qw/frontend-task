@@ -3,8 +3,8 @@
   <a class="al-logo clearfix"><span>STAR-</span>LABS</a>
 
   <!--<div class="search">-->
-    <!--<i class="ion-ios-search-strong" ng-click="startSearch()"></i>-->
-    <!--<input id="searchInput" type="text" placeholder="Search for...">-->
+  <!--<i class="ion-ios-search-strong" ng-click="startSearch()"></i>-->
+  <!--<input id="searchInput" type="text" placeholder="Search for...">-->
   <!--</div>-->
 
   <div class="user-profile clearfix">
@@ -18,6 +18,21 @@
         <li class="dropdown-item"><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
       </ul>
     </div>
-    <ba-msg-center></ba-msg-center>
+  </div>
+  <div class="user-profile clearfix">
+    <div class="dropdown al-user-profile">
+      <a href class="profile-toggle-link dropdown-toggle" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-language fa-3x" aria-hidden="true"></i>
+        <!--<div class="notification-ring"></div>-->
+      </a>
+      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+        <i class="dropdown-arr"></i>
+        <li class="dropdown">
+          <div *ngFor="let lang of translateService.getLangs()">
+            <div class="dropdown-item" (click)="translateService.use(lang)">{{lang}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
 import "style-loader!./login.scss";
+
 @Component({
   selector: 'login',
   templateUrl: './login.html',
@@ -14,21 +15,30 @@ export class LoginComponent implements OnInit {
   }
 
   public defaultPicture = 'assets/img/theme/no-photo.png';
-  public profile:any = {
+  public profile: any = {
     picture: ''
   };
-  public uploaderOptions:NgUploaderOptions = {
+  public uploaderOptions: NgUploaderOptions = {
     // url: 'http://website.com/upload'
     url: 'http://radikal.ru/Img/SaveImg2',
     method: 'POST',
 
   };
-
+//step 5 Filter
   kitchenFilters;
   selectedKitchen;
+  localTypeFilters;
+  selectedLocalType;
+  tableTypeFilter;
+  selectedTableTypes;
+  menuSpecialFilter;
+  selectedMenuTyps;
+
+  //FormGroups
   formLocInfo: FormGroup;
   formWorkHours: FormGroup;
   formContactData: FormGroup;
+//FormControls
 
   legal_name: AbstractControl;
   comercial_name: AbstractControl;
@@ -109,12 +119,26 @@ export class LoginComponent implements OnInit {
     });
 
 
-    this.kitchenFilters = this.mockData.getKitchenData();
+    this.mockData.getKitchenData().then((data) => {
+      this.kitchenFilters = data;
+    });
+    this.mockData.getFilterLocalType().then((data) => {
+      this.localTypeFilters = data;
+    });
+
+    this.mockData.getTableFilterType().then((data) => {
+      this.tableTypeFilter = data;
+    });
+
+
+    this.mockData.getMenuSpecialTypes().then((data) => {
+      this.menuSpecialFilter = data;
+    });
   }
 
   ngOnInit() {
     console.log(this.formWorkHours);
-   console.log(this.kitchenFilters);
+    console.log(this.kitchenFilters);
   }
 
   public onSubmit(values: Object): void {
@@ -145,12 +169,4 @@ export class LoginComponent implements OnInit {
     console.log(values);
   }
 
-
-  public removedKitchen(value:any):void {
-    console.log('Removed value is: ', value);
-  }
-
-  public refreshValueKitchen(value:any):void {
-    this.selectedKitchen = value;
-  }
 }

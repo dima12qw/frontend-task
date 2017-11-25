@@ -3,13 +3,13 @@
   <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
     <baWizzard>
       <baWizzardStep>
-        <ba-card cardTitle="Location Info" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+        <ba-card cardTitle="step1.cardTitle" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formLocInfo" (ngSubmit)="onSubmit(formLocInfo.value)">
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="legal_name">"formLocinfo.denjur"</label>
+                  <label for="legal_name" translate>step1.form.labelLegalName</label>
                   <input [formControl]="legal_name" type="text" class="form-control" id="legal_name">
                 </div>
               </div>
@@ -17,13 +17,13 @@
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="comercial_name">"formLocinfo.dencom"</label>
+                  <label for="comercial_name" translate>step1.form.labelCommercialName</label>
                   <input [formControl]="comercial_name" type="text" class="form-control" id="comercial_name">
                 </div>
               </div>
               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <div class="form-group">
-                  <label for="discount">"formLocinfo.discount"</label>
+                  <label for="discount" translate>step1.form.labelDiscount</label>
                   <div class="input-group">
                     <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount">
                     <span class="input-group-addon addon-right input-group-addon-success">%</span>
@@ -33,7 +33,7 @@
               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <div class="form-group">
                   <div class="checkbox">
-                    <ba-checkbox [(ngModel)]="isChecked" [label]="'Activarea bronarii'"
+                    <ba-checkbox [(ngModel)]="isChecked" [label]="'step1.form.labelBron'"
                                  [ngModelOptions]="{standalone: true}"></ba-checkbox>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="category">"formLocinfo.category"</label>
+                  <label for="category" translate>step1.form.labelCategory</label>
                   <select [formControl]="category" type="text" class="form-control" id="category">
                     <option>1</option>
                     <option>2</option>
@@ -54,7 +54,7 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="avg_sum">"formLocinfo.avg_sum"</label>
+                  <label for="avg_sum" translate>step1.form.labelAvgSum</label>
                   <select [formControl]="avg_sum" type="text" class="form-control" id="avg_sum">
                     <option>1</option>
                     <option>2</option>
@@ -68,13 +68,13 @@
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="description_RO">"formLocInfo.descriptionRO"</label>
+                  <label for="description_RO" translate>step1.form.labelDescriptionRO</label>
                   <textarea [formControl]="description_RO" class="form-control" id="description_RO"></textarea>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
-                  <label for="description_RU">"formLocInfo.descriptionRU"</label>
+                  <label for="description_RU">step1.form.labelDescriptionRU</label>
                   <textarea [formControl]="description_RU" class="form-control" id="description_RU"></textarea>
                 </div>
               </div>
@@ -84,10 +84,14 @@
         </ba-card>
       </baWizzardStep>
       <baWizzardStep>
-        <ba-card cardTitle="Working Hours" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+        <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formWorkHours" class="form-horizontal" (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
             <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
+              <div class="form-group row">
+                  <div class="offset-sm-3 col-sm-2">De la</div>
+                  <div class="col-sm-2">Pina la</div>
+                </div>
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-2">"wHours.Monday"</label>
                 <input formControlName="hStart" class="offset-sm-1 col-sm-2 form-control" id="monHStart">
@@ -282,12 +286,36 @@
       <baWizzardStep>
         <ba-card cardTitle="Filters" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
-          <div class="class">
           <h1>Specificati caracteristicile localului</h1>
+          <div class="class">
           <a>Bucatarie</a>
             <ng-select  [multiple]="true"
                         [items]="kitchenFilters"
                         [(ngModel)]="selectedKitchen"
+                        placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Tip Local</a>
+            <ng-select  [multiple]="true"
+                        [items]="localTypeFilters"
+                        [(ngModel)]="selectedLocalType"
+                        placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Tip Mese</a>
+            <ng-select  [multiple]="true"
+                        [items]="tableTypeFilter"
+                        [(ngModel)]="selectedTableTypes"
+                        placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Menu Special</a>
+            <ng-select  [multiple]="true"
+                        [items]="menuSpecialFilter"
+                        [(ngModel)]="selectedMenuTyps"
                         placeholder="No filter selected"></ng-select>
 
           </div>
@@ -304,3 +332,4 @@
     </baWizzard>
   </div>
 </div>
+

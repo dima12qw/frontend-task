@@ -24,7 +24,7 @@ const translationOptions = {
 })
 export class AppTranslationModule {
   constructor(private translate: TranslateService) {
-    translate.addLangs(["en"]);
+    translate.addLangs(["en","ro","ru"]);
     translate.setDefaultLang('en');
     translate.use('en');
   }

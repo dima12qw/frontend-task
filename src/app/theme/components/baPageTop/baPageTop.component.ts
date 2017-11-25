@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 
 import {GlobalState} from '../../../global.state';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'ba-page-top',
@@ -12,10 +13,12 @@ export class BaPageTop {
   public isScrolled:boolean = false;
   public isMenuCollapsed:boolean = false;
 
-  constructor(private _state:GlobalState) {
+  constructor(private _state:GlobalState, public translateService: TranslateService) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+
+    this.translateService.getLangs();
   }
 
   public toggleMenu() {

@@ -1,0 +1,11 @@
+{
+  "step1":{
+    "cardTitle": "Location Info",
+    "form":{
+      "labelLegalName": "Legal Name",
+      "labelCommercialName": "Commercial Name",
+      "labelDiscount": "Discount"
+
+    }
+  }
+}
