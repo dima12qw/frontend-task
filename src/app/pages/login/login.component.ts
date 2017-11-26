@@ -10,6 +10,9 @@ import "style-loader!./login.scss";
   // styleUrls: ['./login.scss'],
 })
 export class LoginComponent implements OnInit {
+  categories;
+  avgSums;
+  isChecked: boolean = false;
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
@@ -54,12 +57,12 @@ export class LoginComponent implements OnInit {
     this.formLocInfo = builder.group({
       'legal_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'comercial_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'discount': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'discount': ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(3)])],
       'bron_activ': [''],
       'category': ['', Validators.compose([Validators.required])],
       'avg_sum': ['', Validators.compose([Validators.required])],
-      'description_RO': [''],
-      'description_RU': [''],
+      'description_RO': ['', Validators.compose([Validators.required])],
+      'description_RU': ['', Validators.compose([Validators.required])],
     });
     this.legal_name = this.formLocInfo.controls['legal_name'];
     this.comercial_name = this.formLocInfo.controls['comercial_name'];
@@ -72,38 +75,38 @@ export class LoginComponent implements OnInit {
 
     this.formWorkHours = builder.group({
       sunday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       monday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       tuesday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       wednesday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       thursday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       friday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       saturday: builder.group({
-        hStart: [''],
-        hFinish: [''],
+        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
     });
@@ -134,15 +137,32 @@ export class LoginComponent implements OnInit {
     this.mockData.getMenuSpecialTypes().then((data) => {
       this.menuSpecialFilter = data;
     });
+
+    this.mockData.getCategories().then((data) => {
+      this.categories = data;
+    });
+
+    this.mockData.getAvgSums().then((data) => {
+      this.avgSums = data;
+    });
+
+
   }
 
   ngOnInit() {
-    console.log(this.formWorkHours);
-    console.log(this.kitchenFilters);
+    this.mockData.getLegalName().then((data) => {
+      this.formLocInfo.patchValue({legal_name: data})
+    });
+    console.log(Object.keys(this.formWorkHours.controls));
+
+    Object.keys(this.formWorkHours.controls).forEach((key) => {
+      this.formWorkHours.get(key).patchValue({activity: this.activity['type1']});
+    });
   }
 
   public onSubmit(values: Object): void {
     this.submitted = true;
+    values['bron_activ'] = this.isChecked;
     console.log(values);
     if (this.formLocInfo.valid) {
       // your code goes here
@@ -159,6 +179,8 @@ export class LoginComponent implements OnInit {
     else {
       f.get('hStart').enable();
       f.get('hFinish').enable();
+      f.get('hStart').setValidators(Validators.compose([Validators.required, Validators.minLength(4)]));
+      f.get('hFinish').setValidators(Validators.compose([Validators.required, Validators.minLength(4)]));
     }
     f.patchValue({activity: actType});
 

@@ -10,19 +10,23 @@
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <div class="form-group">
                   <label for="legal_name" translate>step1.form.labelLegalName</label>
-                  <input [formControl]="legal_name" type="text" class="form-control" id="legal_name">
+                  <input [formControl]="legal_name" type="text" class="form-control" id="legal_name" readonly>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <div class="form-group">
+                <div class="form-group"
+                     [ngClass]="{'has-error  has-feedback': (!formLocInfo.controls['comercial_name'].valid)}">
                   <label for="comercial_name" translate>step1.form.labelCommercialName</label>
-                  <input [formControl]="comercial_name" type="text" class="form-control" id="comercial_name">
+                  <input [formControl]="comercial_name" type="text" class="form-control" id="comercial_name"
+                         aria-describedby="inputError2Status">
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
               </div>
               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['discount'].valid)}">
                   <label for="discount" translate>step1.form.labelDiscount</label>
                   <div class="input-group">
                     <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount">
@@ -41,41 +45,39 @@
             </div>
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['category'].valid)}">
                   <label for="category" translate>step1.form.labelCategory</label>
                   <select [formControl]="category" type="text" class="form-control" id="category">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option *ngFor="let category of categories; let i=index" [value]="category">{{category}}</option>
                   </select>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['avg_sum'].valid)}">
                   <label for="avg_sum" translate>step1.form.labelAvgSum</label>
                   <select [formControl]="avg_sum" type="text" class="form-control" id="avg_sum">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option *ngFor="let sum of avgSums" [value]="sum">{{sum}}</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <div class="form-group">
+                <div class="form-group"
+                     [ngClass]="{'has-error has-feedback': (!formLocInfo.controls['description_RO'].valid)}">
                   <label for="description_RO" translate>step1.form.labelDescriptionRO</label>
                   <textarea [formControl]="description_RO" class="form-control" id="description_RO"></textarea>
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <div class="form-group">
-                  <label for="description_RU">step1.form.labelDescriptionRU</label>
+                <div class="form-group"
+                     [ngClass]="{'has-error has-feedback': (!formLocInfo.controls['description_RU'].valid)}">
+                  <label for="description_RU" translate>step1.form.labelDescriptionRU</label>
                   <textarea [formControl]="description_RU" class="form-control" id="description_RU"></textarea>
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
               </div>
             </div>
@@ -89,14 +91,24 @@
           <form [formGroup]="formWorkHours" class="form-horizontal" (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
             <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
               <div class="form-group row">
-                  <div class="offset-sm-3 col-sm-2">De la</div>
-                  <div class="col-sm-2">Pina la</div>
+                <div class="offset-sm-3 col-sm-2">De la</div>
+                <div class="col-sm-2">Pina la</div>
+              </div>
+              <div class="row">
+                <label for="monH" class="col-sm-2">"wHours.Monday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hStart').valid && !formWorkHours.get('monday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hStart')"
+                         class="form-control"
+                         id="monH">
                 </div>
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-2">"wHours.Monday"</label>
-                <input formControlName="hStart" class="offset-sm-1 col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hFinish').valid && !formWorkHours.get('monday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="monH">
+
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('monday'))">Open
                   </button>
@@ -112,8 +124,10 @@
             <div [formGroup]="formWorkHours.get('tuesday')" class="form-horizontal">
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-3">"wHours.Tuesday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <input [formControl]="formWorkHours.get('tuesday').get('hStart')" class="col-sm-2 form-control"
+                       id="monHStart">
+                <input [formControl]="formWorkHours.get('tuesday').get('hFinish')" class="col-sm-2 form-control"
+                       id="monHFinish">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))">Open
@@ -130,8 +144,10 @@
             <div [formGroup]="formWorkHours.get('wednesday')" class="form-horizontal">
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-3">"wHours.Wednesday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <input [formControl]="formWorkHours.get('wednesday').get('hStart')" class="col-sm-2 form-control"
+                       id="monHStart">
+                <input [formControl]="formWorkHours.get('wednesday').get('hFinish')" class="col-sm-2 form-control"
+                       id="monHFinish">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))">Open
@@ -148,8 +164,10 @@
             <div [formGroup]="formWorkHours.get('thursday')" class="form-horizontal">
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-3">"wHours.Thursday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <input [formControl]="formWorkHours.get('thursday').get('hStart')" class="col-sm-2 form-control"
+                       id="monHStart">
+                <input [formControl]="formWorkHours.get('thursday').get('hFinish')" class="col-sm-2 form-control"
+                       id="monHFinish">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('thursday'))">Open
@@ -166,8 +184,10 @@
             <div [formGroup]="formWorkHours.get('friday')" class="form-horizontal">
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-3">"wHours.Friday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <input [formControl]="formWorkHours.get('friday').get('hStart')" class="col-sm-2 form-control"
+                       id="monHStart">
+                <input [formControl]="formWorkHours.get('friday').get('hFinish')" class="col-sm-2 form-control"
+                       id="monHFinish">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('friday'))">Open
@@ -184,8 +204,10 @@
             <div [formGroup]="formWorkHours.get('saturday')" class="form-horizontal">
               <div class="form-group row">
                 <label for="monHStart" class="col-sm-3">"wHours.Saturday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
+                <input [formControl]="formWorkHours.get('saturday').get('hStart')" class="col-sm-2 form-control"
+                       id="monHStart">
+                <input [formControl]="formWorkHours.get('saturday').get('hFinish')" class="col-sm-2 form-control"
+                       id="monHFinish">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('saturday'))">Open
@@ -226,7 +248,7 @@
                  baCardClass="traffic-panel">
           <div class="row">
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <form [formGroup]="formContactData" >
+              <form [formGroup]="formContactData">
                 <div class="row">
                   <div class="form-group">
                     <label for="first_name">"formContactData.fname"</label>
@@ -280,7 +302,8 @@
       <baWizzardStep>
         <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
-          <ba-picture-uploader  [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
+          <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture"
+                               [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
         </ba-card>
       </baWizzardStep>
       <baWizzardStep>
@@ -288,35 +311,35 @@
                  baCardClass="traffic-panel">
           <h1>Specificati caracteristicile localului</h1>
           <div class="class">
-          <a>Bucatarie</a>
-            <ng-select  [multiple]="true"
-                        [items]="kitchenFilters"
-                        [(ngModel)]="selectedKitchen"
-                        placeholder="No filter selected"></ng-select>
+            <a>Bucatarie</a>
+            <ng-select [multiple]="true"
+                       [items]="kitchenFilters"
+                       [(ngModel)]="selectedKitchen"
+                       placeholder="No filter selected"></ng-select>
 
           </div>
           <div class="class">
             <a>Tip Local</a>
-            <ng-select  [multiple]="true"
-                        [items]="localTypeFilters"
-                        [(ngModel)]="selectedLocalType"
-                        placeholder="No filter selected"></ng-select>
+            <ng-select [multiple]="true"
+                       [items]="localTypeFilters"
+                       [(ngModel)]="selectedLocalType"
+                       placeholder="No filter selected"></ng-select>
 
           </div>
           <div class="class">
             <a>Tip Mese</a>
-            <ng-select  [multiple]="true"
-                        [items]="tableTypeFilter"
-                        [(ngModel)]="selectedTableTypes"
-                        placeholder="No filter selected"></ng-select>
+            <ng-select [multiple]="true"
+                       [items]="tableTypeFilter"
+                       [(ngModel)]="selectedTableTypes"
+                       placeholder="No filter selected"></ng-select>
 
           </div>
           <div class="class">
             <a>Menu Special</a>
-            <ng-select  [multiple]="true"
-                        [items]="menuSpecialFilter"
-                        [(ngModel)]="selectedMenuTyps"
-                        placeholder="No filter selected"></ng-select>
+            <ng-select [multiple]="true"
+                       [items]="menuSpecialFilter"
+                       [(ngModel)]="selectedMenuTyps"
+                       placeholder="No filter selected"></ng-select>
 
           </div>
         </ba-card>
