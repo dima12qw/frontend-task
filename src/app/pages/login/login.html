@@ -106,7 +106,6 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hFinish').valid && !formWorkHours.get('monday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
                          id="monH">
-
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -122,13 +121,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('tuesday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Tuesday"</label>
-                <input [formControl]="formWorkHours.get('tuesday').get('hStart')" class="col-sm-2 form-control"
-                       id="monHStart">
-                <input [formControl]="formWorkHours.get('tuesday').get('hFinish')" class="col-sm-2 form-control"
-                       id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="tueH" class="col-sm-2">"wHours.Tuesday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hStart').valid && !formWorkHours.get('tuesday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('tuesday').get('hStart')"
+                         class="form-control"
+                         id="tueH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hFinish').valid && !formWorkHours.get('tuesday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="monH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))">Open
                   </button>
@@ -142,13 +148,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('wednesday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Wednesday"</label>
-                <input [formControl]="formWorkHours.get('wednesday').get('hStart')" class="col-sm-2 form-control"
-                       id="monHStart">
-                <input [formControl]="formWorkHours.get('wednesday').get('hFinish')" class="col-sm-2 form-control"
-                       id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="wedH" class="col-sm-2">"wHours.Wednesday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hStart').valid && !formWorkHours.get('wednesday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('wednesday').get('hStart')"
+                         class="form-control"
+                         id="wedH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hFinish').valid && !formWorkHours.get('wednesday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="wedH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))">Open
                   </button>
@@ -162,13 +175,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('thursday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Thursday"</label>
-                <input [formControl]="formWorkHours.get('thursday').get('hStart')" class="col-sm-2 form-control"
-                       id="monHStart">
-                <input [formControl]="formWorkHours.get('thursday').get('hFinish')" class="col-sm-2 form-control"
-                       id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="thurH" class="col-sm-2">"wHours.Thursday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hStart').valid && !formWorkHours.get('thursday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('thursday').get('hStart')"
+                         class="form-control"
+                         id="thurH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hFinish').valid && !formWorkHours.get('thursday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('thursday').get('hFinish')" class="form-control"
+                         id="monH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('thursday'))">Open
                   </button>
@@ -182,13 +202,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('friday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Friday"</label>
-                <input [formControl]="formWorkHours.get('friday').get('hStart')" class="col-sm-2 form-control"
-                       id="monHStart">
-                <input [formControl]="formWorkHours.get('friday').get('hFinish')" class="col-sm-2 form-control"
-                       id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="friH" class="col-sm-2">"wHours.Friday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hStart').valid && !formWorkHours.get('friday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('friday').get('hStart')"
+                         class="form-control"
+                         id="friH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hFinish').valid && !formWorkHours.get('friday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('friday').get('hFinish')" class="form-control"
+                         id="friH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('friday'))">Open
                   </button>
@@ -202,13 +229,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('saturday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Saturday"</label>
-                <input [formControl]="formWorkHours.get('saturday').get('hStart')" class="col-sm-2 form-control"
-                       id="monHStart">
-                <input [formControl]="formWorkHours.get('saturday').get('hFinish')" class="col-sm-2 form-control"
-                       id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="satH" class="col-sm-2">"wHours.Saturday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hStart').valid && !formWorkHours.get('saturday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('saturday').get('hStart')"
+                         class="form-control"
+                         id="satH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hFinish').valid && !formWorkHours.get('saturday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('saturday').get('hFinish')" class="form-control"
+                         id="satH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('saturday'))">Open
                   </button>
@@ -222,11 +256,20 @@
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('sunday')" class="form-horizontal">
-              <div class="form-group row">
-                <label for="monHStart" class="col-sm-3">"wHours.Sunday"</label>
-                <input formControlName="hStart" class="col-sm-2 form-control" id="monHStart">
-                <input formControlName="hFinish" class="col-sm-2 form-control" id="monHFinish">
-                <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="row">
+                <label for="sunH" class="col-sm-2">"wHours.Sunday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hStart').valid && !formWorkHours.get('sunday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('sunday').get('hStart')"
+                         class="form-control"
+                         id="sunH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hFinish').valid && !formWorkHours.get('sunday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('sunday').get('hFinish')" class="form-control"
+                         id="sunH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
                           (click)="onSelect(activity.type1,formWorkHours.get('sunday'))">Open
                   </button>
