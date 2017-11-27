@@ -21,7 +21,9 @@ import {AgmCoreModule} from '@agm/core';
     NgSelectModule,
     TextMaskModule,
     routing,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4'}),
+    TextMaskModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4',
+    libraries: ['places']}),
   ],
   declarations: [
     LoginComponent,

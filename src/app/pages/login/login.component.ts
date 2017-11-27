@@ -13,8 +13,8 @@ import {WizzardModel} from "./models/wizzard.model";
 export class LoginComponent implements OnInit {
   categories;
   avgSums;
-  private wizzardModel: WizzardModel = new WizzardModel();
   isChecked: boolean = false;
+  public mask = [/[0-2]/, /\d/, ':', /[0-5]/, /\d/];
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
   selectedMenuTyps;
 
   //FormGroups
+  formWizz: FormGroup;
   formLocInfo: FormGroup;
   formWorkHours: FormGroup;
   formContactData: FormGroup;
@@ -74,7 +75,6 @@ export class LoginComponent implements OnInit {
     this.avg_sum = this.formLocInfo.controls['avg_sum'];
     this.description_RO = this.formLocInfo.controls['description_RO'];
     this.description_RU = this.formLocInfo.controls['description_RU'];
-
     this.formWorkHours = builder.group({
       sunday: builder.group({
         hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -125,6 +125,11 @@ export class LoginComponent implements OnInit {
       lng: ['']
     });
 
+this.formWizz = builder.group({
+  LocInfo: this.formLocInfo,
+  WorkHours: this.formWorkHours,
+  ContactData: this.formContactData
+});
 
     this.mockData.getKitchenData().then((data) => {
       this.kitchenFilters = data;
@@ -162,6 +167,8 @@ export class LoginComponent implements OnInit {
     Object.keys(this.formWorkHours.controls).forEach((key) => {
       this.formWorkHours.get(key).patchValue({activity: this.activity['type1']});
     });
+
+    console.log(this.formWizz.value);
   }
 
   public onSubmit(values: Object): void {
@@ -213,14 +220,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  storeLocalStorage(step, form, string: string){
-    step = string;
-    localStorage.setItem(step, JSON.stringify(form.value));
+  storeLocalStorage(form, string: string){
+    localStorage.setItem(string, JSON.stringify(form.value));
     form.reset();
   }
 
-  getFromLocalStorage(step, form, string: string){
-    step = string;
-    form.reset(JSON.parse(localStorage.getItem(step)));
+  getFromLocalStorage(form, string: string){
+    form.reset(JSON.parse(localStorage.getItem(string)));
   }
+
 }

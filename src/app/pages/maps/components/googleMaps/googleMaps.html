@@ -1,5 +1,5 @@
 
 <agm-map [latitude]="lat" [longitude]="lng" #map (mapClick)="mapClicked($event)">
-<agm-marker *ngIf="marker" [markerDraggable]="true" (dragEnd)="markerDragEnd(marker, $event)" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
+<agm-marker #search *ngIf="marker" [markerDraggable]="true" (dragEnd)="markerDragEnd(marker, $event)" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
 </agm-map>
-
+<!--<input id="address" placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control">-->
