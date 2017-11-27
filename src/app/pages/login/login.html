@@ -88,7 +88,8 @@
       <baWizzardStep>
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
-          <form [formGroup]="formWorkHours" class="form-horizontal" (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
+          <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
+                (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
             <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
               <div class="form-group row">
                 <div class="offset-sm-3 col-sm-2">De la</div>
@@ -293,43 +294,50 @@
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <form [formGroup]="formContactData">
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cFirstName'].valid)}">
                     <label for="first_name">"formContactData.fname"</label>
                     <input formControlName="cFirstName" type="text" class="form-control" id="first_name">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cLastName'].valid)}">
                     <label for="last_name">"formContactData.lname"</label>
                     <input formControlName="cLastName" type="text" class="form-control" id="last_name">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['phoneNumber'].valid)}">
                     <label for="phone_number">"formContactData.phNumber"</label>
                     <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['country'].valid)}">
                     <label for="country">"formContactData.country"</label>
                     <input formControlName="country" type="text" class="form-control" id="country">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['city'].valid)}">
                     <label for="city">"formContactData.city"</label>
                     <input formControlName="city" type="text" class="form-control" id="city">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['street'].valid)}">
                     <label for="street">"formContactData.street"</label>
                     <input formControlName="street" type="text" class="form-control" id="street">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['postCode'].valid)}">
                     <label for="post_code">"formContactData.postCode"</label>
                     <input formControlName="postCode" type="text" class="form-control" id="post_code">
                   </div>
@@ -337,7 +345,11 @@
               </form>
             </div>
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
-              <google-maps></google-maps>
+              <div class="row">Map</div>
+                <ba-card>
+                  <google-maps (mapEvent)="mapClick($event)"></google-maps>
+                </ba-card>
+
             </div>
           </div>
         </ba-card>

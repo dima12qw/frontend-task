@@ -1,3 +1,5 @@
 
-<div class="google-maps"></div>
+<agm-map [latitude]="lat" [longitude]="lng" #map (mapClick)="mapClicked($event)">
+<agm-marker *ngIf="marker" [markerDraggable]="true" (dragEnd)="markerDragEnd(marker, $event)" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
+</agm-map>
 

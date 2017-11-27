@@ -9,7 +9,7 @@ import { routing }       from './login.routing';
 import {MockdataService} from "./services/mockdata.service";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {TextMaskModule} from "angular2-text-mask";
-
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   imports: [
@@ -20,7 +20,8 @@ import {TextMaskModule} from "angular2-text-mask";
     NgaModule,
     NgSelectModule,
     TextMaskModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4'}),
   ],
   declarations: [
     LoginComponent,

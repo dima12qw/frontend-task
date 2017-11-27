@@ -75,50 +75,50 @@ export class LoginComponent implements OnInit {
 
     this.formWorkHours = builder.group({
       sunday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       monday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       tuesday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       wednesday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       thursday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       friday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
       saturday: builder.group({
-        hStart: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
-        hFinish: ['',Validators.compose([Validators.required, Validators.minLength(4)])],
+        hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        hFinish: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
         activity: [''],
       }),
     });
 
     this.formContactData = builder.group({
-      cFirstName: [''],
-      cLastName: [''],
-      phoneNumber: [''],
-      country: [''],
-      city: [''],
-      street: [''],
-      postCode: ['']
+      cFirstName: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      cLastName: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      phoneNumber: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      country: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      city: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      street: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      postCode: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
     });
 
 
@@ -190,5 +190,14 @@ export class LoginComponent implements OnInit {
   public onSubmitWorkHours(values: Object): void {
     console.log(values);
   }
+  mapClick($address){
+    console.log($address[0]);
+    console.log($address[0].formatted_address.split(","));
+    this.formContactData.patchValue({
+      street: $address[0].formatted_address.split(",")[0],
+      city: $address[0].formatted_address.split(",")[1],
+      country: $address[0].formatted_address.split(",")[2]
+    })
 
+  }
 }

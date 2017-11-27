@@ -1,21 +1,22 @@
-import { NgModule, ApplicationRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import {NgModule, ApplicationRef} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {RouterModule} from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {TranslateService} from '@ngx-translate/core';
+import {AgmCoreModule} from '@agm/core';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { routing } from './app.routing';
+import {routing} from './app.routing';
 
 // App is our top level component
-import { App } from './app.component';
-import { AppState, InternalStateType } from './app.service';
-import { GlobalState } from './global.state';
-import { NgaModule } from './theme/nga.module';
-import { PagesModule } from './pages/pages.module';
+import {App} from './app.component';
+import {AppState, InternalStateType} from './app.service';
+import {GlobalState} from './global.state';
+import {NgaModule} from './theme/nga.module';
+import {PagesModule} from './pages/pages.module';
 
 
 // Application wide providers
@@ -46,6 +47,7 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     NgbModule.forRoot(),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4'}),
     PagesModule,
     routing
   ],
