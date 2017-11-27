@@ -2,7 +2,7 @@
 <div class="auth-main">
   <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
     <baWizzard>
-      <baWizzardStep>
+      <baWizzardStep (onNext)="storeLocalStorage(wizzardModel.step1, formLocInfo, 'step1')">
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formLocInfo" (ngSubmit)="onSubmit(formLocInfo.value)">
@@ -85,7 +85,7 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
+      <baWizzardStep (onPrev)="getFromLocalStorage(wizzardModel.step1, formLocInfo, 'step1')" >
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
@@ -340,6 +340,8 @@
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['postCode'].valid)}">
                     <label for="post_code">"formContactData.postCode"</label>
                     <input formControlName="postCode" type="text" class="form-control" id="post_code">
+                    <input formControlName="lat" class="form-control" id="lat" hidden>
+                    <input formControlName="lng" class="form-control" id="lng" hidden>
                   </div>
                 </div>
               </form>
@@ -347,7 +349,7 @@
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <div class="row">Map</div>
                 <ba-card>
-                  <google-maps (mapEvent)="mapClick($event)"></google-maps>
+                  <google-maps (mapEvent)="mapClick($event)" (coordinates)="mapCoordinates($event)"></google-maps>
                 </ba-card>
 
             </div>

@@ -3,6 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
 import "style-loader!./login.scss";
+import {WizzardModel} from "./models/wizzard.model";
 
 @Component({
   selector: 'login',
@@ -12,6 +13,7 @@ import "style-loader!./login.scss";
 export class LoginComponent implements OnInit {
   categories;
   avgSums;
+  private wizzardModel: WizzardModel = new WizzardModel();
   isChecked: boolean = false;
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
@@ -118,7 +120,9 @@ export class LoginComponent implements OnInit {
       country: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       city: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       street: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      postCode: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+      postCode: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      lat: [''],
+      lng: ['']
     });
 
 
@@ -190,14 +194,33 @@ export class LoginComponent implements OnInit {
   public onSubmitWorkHours(values: Object): void {
     console.log(values);
   }
-  mapClick($address){
-    console.log($address[0]);
-    console.log($address[0].formatted_address.split(","));
-    this.formContactData.patchValue({
-      street: $address[0].formatted_address.split(",")[0],
-      city: $address[0].formatted_address.split(",")[1],
-      country: $address[0].formatted_address.split(",")[2]
-    })
 
+  mapClick($address) {
+    console.log($address);
+    console.log($address[0].formatted_address.split(','));
+    this.formContactData.patchValue({
+      street: $address[0].formatted_address.split(',')[0],
+      city: $address[0].formatted_address.split(',')[1],
+      country: $address[0].formatted_address.split(',')[2]
+    });
+  }
+
+  mapCoordinates($event) {
+    console.log($event);
+    this.formContactData.patchValue({
+      lat: $event.lat,
+      lng: $event.lng
+    })
+  }
+
+  storeLocalStorage(step, form, string: string){
+    step = string;
+    localStorage.setItem(step, JSON.stringify(form.value));
+    form.reset();
+  }
+
+  getFromLocalStorage(step, form, string: string){
+    step = string;
+    form.reset(JSON.parse(localStorage.getItem(step)));
   }
 }

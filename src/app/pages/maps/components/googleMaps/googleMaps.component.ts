@@ -13,7 +13,7 @@ declare var google: any;
   templateUrl: './googleMaps.html',
 })
 export class GoogleMaps implements AfterContentChecked, AfterViewInit {
-  @Output() address;
+  @Output() coordinates = new EventEmitter();
   @Output() mapEvent= new EventEmitter();
   @ViewChild('map') map: AgmMap;
   marker: AgmMarker = new AgmMarker(<any>'');
@@ -43,14 +43,15 @@ export class GoogleMaps implements AfterContentChecked, AfterViewInit {
     this.marker.latitude = $event.coords.lat;
     this.marker.longitude = $event.coords.lng;
     this.geocoder.geocode({"location": {lat: this.marker.latitude, lng: this.marker.longitude}}, (results, status) => {
-      address = results;
-       this.mapEvent.emit(address);
+       this.mapEvent.emit(results);
+       this.coordinates.emit({lat: this.marker.latitude, lng: this.marker.longitude})
     })
   }
 
   markerDragEnd(m, $event){
     this.geocoder.geocode({"location": {lat: $event.coords.lat, lng: $event.coords.lng}}, (results, status) => {
       this.mapEvent.emit(results);
+      this.coordinates.emit({lat: $event.coords.lat, lng: $event.coords.lng});
     })
   }
 }
