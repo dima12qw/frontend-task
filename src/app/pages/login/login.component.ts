@@ -3,6 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
 import "style-loader!./login.scss";
+import {WizzardModel} from "./models/wizzard.model";
 
 @Component({
   selector: 'login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   categories;
   avgSums;
   isChecked: boolean = false;
+  public mask = [/[0-2]/, /\d/, ':', /[0-5]/, /\d/];
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
   selectedMenuTyps;
 
   //FormGroups
+  formWizz: FormGroup;
   formLocInfo: FormGroup;
   formWorkHours: FormGroup;
   formContactData: FormGroup;
@@ -72,7 +75,6 @@ export class LoginComponent implements OnInit {
     this.avg_sum = this.formLocInfo.controls['avg_sum'];
     this.description_RO = this.formLocInfo.controls['description_RO'];
     this.description_RU = this.formLocInfo.controls['description_RU'];
-
     this.formWorkHours = builder.group({
       sunday: builder.group({
         hStart: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -118,9 +120,16 @@ export class LoginComponent implements OnInit {
       country: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       city: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       street: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      postCode: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+      postCode: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      lat: [''],
+      lng: ['']
     });
 
+this.formWizz = builder.group({
+  LocInfo: this.formLocInfo,
+  WorkHours: this.formWorkHours,
+  ContactData: this.formContactData
+});
 
     this.mockData.getKitchenData().then((data) => {
       this.kitchenFilters = data;
@@ -158,6 +167,8 @@ export class LoginComponent implements OnInit {
     Object.keys(this.formWorkHours.controls).forEach((key) => {
       this.formWorkHours.get(key).patchValue({activity: this.activity['type1']});
     });
+
+    console.log(this.formWizz.value);
   }
 
   public onSubmit(values: Object): void {
@@ -190,14 +201,32 @@ export class LoginComponent implements OnInit {
   public onSubmitWorkHours(values: Object): void {
     console.log(values);
   }
-  mapClick($address){
-    console.log($address[0]);
-    console.log($address[0].formatted_address.split(","));
-    this.formContactData.patchValue({
-      street: $address[0].formatted_address.split(",")[0],
-      city: $address[0].formatted_address.split(",")[1],
-      country: $address[0].formatted_address.split(",")[2]
-    })
 
+  mapClick($address) {
+    console.log($address);
+    console.log($address[0].formatted_address.split(','));
+    this.formContactData.patchValue({
+      street: $address[0].formatted_address.split(',')[0],
+      city: $address[0].formatted_address.split(',')[1],
+      country: $address[0].formatted_address.split(',')[2]
+    });
   }
+
+  mapCoordinates($event) {
+    console.log($event);
+    this.formContactData.patchValue({
+      lat: $event.lat,
+      lng: $event.lng
+    })
+  }
+
+  storeLocalStorage(form, string: string){
+    localStorage.setItem(string, JSON.stringify(form.value));
+    form.reset();
+  }
+
+  getFromLocalStorage(form, string: string){
+    form.reset(JSON.parse(localStorage.getItem(string)));
+  }
+
 }

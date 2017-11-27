@@ -47,7 +47,8 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     NgbModule.forRoot(),
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4'}),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDQKO1d7NuDk_hP_ly_Uhu_CfSgfzagVS4',
+      libraries: ['places']}),
     PagesModule,
     routing
   ],

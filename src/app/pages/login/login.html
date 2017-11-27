@@ -2,7 +2,7 @@
 <div class="auth-main">
   <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
     <baWizzard>
-      <baWizzardStep>
+      <baWizzardStep (onNext)="storeLocalStorage(formLocInfo, 'step1')">
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formLocInfo" (ngSubmit)="onSubmit(formLocInfo.value)">
@@ -85,7 +85,7 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
+      <baWizzardStep (onPrev)="getFromLocalStorage(formLocInfo, 'step1')" >
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
@@ -101,12 +101,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hStart').valid && !formWorkHours.get('monday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hStart')"
                          class="form-control"
-                         id="monH">
+                         id="monH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hFinish').valid && !formWorkHours.get('monday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
-                         id="monH">
+                         id="monH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -128,12 +128,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hStart').valid && !formWorkHours.get('tuesday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('tuesday').get('hStart')"
                          class="form-control"
-                         id="tueH">
+                         id="tueH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hFinish').valid && !formWorkHours.get('tuesday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
-                         id="monH">
+                         id="monH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -155,12 +155,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hStart').valid && !formWorkHours.get('wednesday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('wednesday').get('hStart')"
                          class="form-control"
-                         id="wedH">
+                         id="wedH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hFinish').valid && !formWorkHours.get('wednesday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
-                         id="wedH">
+                         id="wedH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -182,12 +182,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hStart').valid && !formWorkHours.get('thursday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('thursday').get('hStart')"
                          class="form-control"
-                         id="thurH">
+                         id="thurH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hFinish').valid && !formWorkHours.get('thursday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('thursday').get('hFinish')" class="form-control"
-                         id="monH">
+                         id="monH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -209,12 +209,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hStart').valid && !formWorkHours.get('friday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('friday').get('hStart')"
                          class="form-control"
-                         id="friH">
+                         id="friH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hFinish').valid && !formWorkHours.get('friday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('friday').get('hFinish')" class="form-control"
-                         id="friH">
+                         id="friH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -236,12 +236,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hStart').valid && !formWorkHours.get('saturday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('saturday').get('hStart')"
                          class="form-control"
-                         id="satH">
+                         id="satH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hFinish').valid && !formWorkHours.get('saturday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('saturday').get('hFinish')" class="form-control"
-                         id="satH">
+                         id="satH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -263,12 +263,12 @@
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hStart').valid && !formWorkHours.get('sunday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('sunday').get('hStart')"
                          class="form-control"
-                         id="sunH">
+                         id="sunH" [textMask]="{mask: mask}">
                 </div>
                 <div class="form-group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hFinish').valid && !formWorkHours.get('sunday').get('hFinish').disabled)}">
                   <input [formControl]="formWorkHours.get('sunday').get('hFinish')" class="form-control"
-                         id="sunH">
+                         id="sunH" [textMask]="{mask: mask}">
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
@@ -331,8 +331,8 @@
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['street'].valid)}">
-                    <label for="street">"formContactData.street"</label>
-                    <input formControlName="street" type="text" class="form-control" id="street">
+                    <label for="address">"formContactData.street"</label>
+                    <input formControlName="street" type="text" class="form-control" id="address"  autocorrect="off" autocapitalize="off" spellcheck="off">
                   </div>
                 </div>
                 <div class="row">
@@ -340,6 +340,8 @@
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['postCode'].valid)}">
                     <label for="post_code">"formContactData.postCode"</label>
                     <input formControlName="postCode" type="text" class="form-control" id="post_code">
+                    <input formControlName="lat" class="form-control" id="lat" hidden>
+                    <input formControlName="lng" class="form-control" id="lng" hidden>
                   </div>
                 </div>
               </form>
@@ -347,7 +349,7 @@
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <div class="row">Map</div>
                 <ba-card>
-                  <google-maps (mapEvent)="mapClick($event)"></google-maps>
+                  <google-maps (mapEvent)="mapClick($event)" (coordinates)="mapCoordinates($event)"></google-maps>
                 </ba-card>
 
             </div>
