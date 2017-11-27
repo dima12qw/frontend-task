@@ -1,0 +1,15 @@
+{
+  "step1":{
+    "cardTitle": "Location Info",
+    "form":{
+      "labelLegalName": "Legal Name",
+      "labelCommercialName": "Commercial Name",
+      "labelDiscount": "Discount",
+      "labelBron": "Activation ??????",
+      "labelCategory": "Category",
+      "labelAvgSum": "Select the average amount of the unique order",
+      "labelDescriptionRO": "Description RO",
+      "labelDescriptionRU": "Description RU"
+    }
+  }
+}

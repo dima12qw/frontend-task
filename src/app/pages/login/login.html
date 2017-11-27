@@ -1,0 +1,413 @@
+<ba-page-top></ba-page-top>
+<div class="auth-main">
+  <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
+    <baWizzard>
+      <baWizzardStep>
+        <ba-card cardTitle="step1.cardTitle" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <form [formGroup]="formLocInfo" (ngSubmit)="onSubmit(formLocInfo.value)">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label for="legal_name" translate>step1.form.labelLegalName</label>
+                  <input [formControl]="legal_name" type="text" class="form-control" id="legal_name" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group"
+                     [ngClass]="{'has-error  has-feedback': (!formLocInfo.controls['comercial_name'].valid)}">
+                  <label for="comercial_name" translate>step1.form.labelCommercialName</label>
+                  <input [formControl]="comercial_name" type="text" class="form-control" id="comercial_name"
+                         aria-describedby="inputError2Status">
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['discount'].valid)}">
+                  <label for="discount" translate>step1.form.labelDiscount</label>
+                  <div class="input-group">
+                    <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount">
+                    <span class="input-group-addon addon-right input-group-addon-success">%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <ba-checkbox [(ngModel)]="isChecked" [label]="'step1.form.labelBron'"
+                                 [ngModelOptions]="{standalone: true}"></ba-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['category'].valid)}">
+                  <label for="category" translate>step1.form.labelCategory</label>
+                  <select [formControl]="category" type="text" class="form-control" id="category">
+                    <option *ngFor="let category of categories; let i=index" [value]="category">{{category}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['avg_sum'].valid)}">
+                  <label for="avg_sum" translate>step1.form.labelAvgSum</label>
+                  <select [formControl]="avg_sum" type="text" class="form-control" id="avg_sum">
+                    <option *ngFor="let sum of avgSums" [value]="sum">{{sum}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group"
+                     [ngClass]="{'has-error has-feedback': (!formLocInfo.controls['description_RO'].valid)}">
+                  <label for="description_RO" translate>step1.form.labelDescriptionRO</label>
+                  <textarea [formControl]="description_RO" class="form-control" id="description_RO"></textarea>
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group"
+                     [ngClass]="{'has-error has-feedback': (!formLocInfo.controls['description_RU'].valid)}">
+                  <label for="description_RU" translate>step1.form.labelDescriptionRU</label>
+                  <textarea [formControl]="description_RU" class="form-control" id="description_RU"></textarea>
+                  <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+                  <span id="inputError2Status" class="sr-only">(error)</span>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </form>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
+                (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
+            <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
+              <div class="form-group row">
+                <div class="offset-sm-3 col-sm-2">De la</div>
+                <div class="col-sm-2">Pina la</div>
+              </div>
+              <div class="row">
+                <label for="monH" class="col-sm-2">"wHours.Monday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hStart').valid && !formWorkHours.get('monday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hStart')"
+                         class="form-control"
+                         id="monH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hFinish').valid && !formWorkHours.get('monday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="monH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('monday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('monday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('monday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('tuesday')" class="form-horizontal">
+              <div class="row">
+                <label for="tueH" class="col-sm-2">"wHours.Tuesday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hStart').valid && !formWorkHours.get('tuesday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('tuesday').get('hStart')"
+                         class="form-control"
+                         id="tueH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hFinish').valid && !formWorkHours.get('tuesday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="monH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('wednesday')" class="form-horizontal">
+              <div class="row">
+                <label for="wedH" class="col-sm-2">"wHours.Wednesday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hStart').valid && !formWorkHours.get('wednesday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('wednesday').get('hStart')"
+                         class="form-control"
+                         id="wedH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hFinish').valid && !formWorkHours.get('wednesday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('monday').get('hFinish')" class="form-control"
+                         id="wedH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('thursday')" class="form-horizontal">
+              <div class="row">
+                <label for="thurH" class="col-sm-2">"wHours.Thursday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hStart').valid && !formWorkHours.get('thursday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('thursday').get('hStart')"
+                         class="form-control"
+                         id="thurH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hFinish').valid && !formWorkHours.get('thursday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('thursday').get('hFinish')" class="form-control"
+                         id="monH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('friday')" class="form-horizontal">
+              <div class="row">
+                <label for="friH" class="col-sm-2">"wHours.Friday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hStart').valid && !formWorkHours.get('friday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('friday').get('hStart')"
+                         class="form-control"
+                         id="friH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hFinish').valid && !formWorkHours.get('friday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('friday').get('hFinish')" class="form-control"
+                         id="friH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('saturday')" class="form-horizontal">
+              <div class="row">
+                <label for="satH" class="col-sm-2">"wHours.Saturday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hStart').valid && !formWorkHours.get('saturday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('saturday').get('hStart')"
+                         class="form-control"
+                         id="satH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hFinish').valid && !formWorkHours.get('saturday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('saturday').get('hFinish')" class="form-control"
+                         id="satH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div [formGroup]="formWorkHours.get('sunday')" class="form-horizontal">
+              <div class="row">
+                <label for="sunH" class="col-sm-2">"wHours.Sunday"</label>
+                <div class="form group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hStart').valid && !formWorkHours.get('sunday').get('hStart').disabled)}">
+                  <input [formControl]="formWorkHours.get('sunday').get('hStart')"
+                         class="form-control"
+                         id="sunH">
+                </div>
+                <div class="form-group col-sm-2"
+                     [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hFinish').valid && !formWorkHours.get('sunday').get('hFinish').disabled)}">
+                  <input [formControl]="formWorkHours.get('sunday').get('hFinish')" class="form-control"
+                         id="sunH">
+                </div>
+                <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger"
+                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))">Open
+                  </button>
+                  <button type="button" class="btn btn-info"
+                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))">Closed
+                  </button>
+                  <button type="button" class="btn btn-success"
+                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))">24/24
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </form>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Contact Data" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <div class="row">
+            <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <form [formGroup]="formContactData">
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cFirstName'].valid)}">
+                    <label for="first_name">"formContactData.fname"</label>
+                    <input formControlName="cFirstName" type="text" class="form-control" id="first_name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cLastName'].valid)}">
+                    <label for="last_name">"formContactData.lname"</label>
+                    <input formControlName="cLastName" type="text" class="form-control" id="last_name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['phoneNumber'].valid)}">
+                    <label for="phone_number">"formContactData.phNumber"</label>
+                    <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['country'].valid)}">
+                    <label for="country">"formContactData.country"</label>
+                    <input formControlName="country" type="text" class="form-control" id="country">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['city'].valid)}">
+                    <label for="city">"formContactData.city"</label>
+                    <input formControlName="city" type="text" class="form-control" id="city">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['street'].valid)}">
+                    <label for="street">"formContactData.street"</label>
+                    <input formControlName="street" type="text" class="form-control" id="street">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"
+                       [ngClass]="{'has-error  has-feedback': (!formContactData.controls['postCode'].valid)}">
+                    <label for="post_code">"formContactData.postCode"</label>
+                    <input formControlName="postCode" type="text" class="form-control" id="post_code">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <div class="row">Map</div>
+                <ba-card>
+                  <google-maps (mapEvent)="mapClick($event)"></google-maps>
+                </ba-card>
+
+            </div>
+          </div>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture"
+                               [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Filters" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <h1>Specificati caracteristicile localului</h1>
+          <div class="class">
+            <a>Bucatarie</a>
+            <ng-select [multiple]="true"
+                       [items]="kitchenFilters"
+                       [(ngModel)]="selectedKitchen"
+                       placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Tip Local</a>
+            <ng-select [multiple]="true"
+                       [items]="localTypeFilters"
+                       [(ngModel)]="selectedLocalType"
+                       placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Tip Mese</a>
+            <ng-select [multiple]="true"
+                       [items]="tableTypeFilter"
+                       [(ngModel)]="selectedTableTypes"
+                       placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class">
+            <a>Menu Special</a>
+            <ng-select [multiple]="true"
+                       [items]="menuSpecialFilter"
+                       [(ngModel)]="selectedMenuTyps"
+                       placeholder="No filter selected"></ng-select>
+
+          </div>
+        </ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+      <baWizzardStep>
+        <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel"></ba-card>
+      </baWizzardStep>
+    </baWizzard>
+  </div>
+</div>
+
