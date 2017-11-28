@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   isChecked: boolean = false;
   public mask = [/[0-2]/, /\d/, ':', /[0-5]/, /\d/];
   public phoneMask = ['+', '3', '7', '3', ' ', /[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  public discountMask = [/[0-9]/, /[1-9]/];
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }

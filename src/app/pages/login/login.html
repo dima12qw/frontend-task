@@ -29,7 +29,7 @@
                 <div class="form-group" [ngClass]="{'has-error': (!formLocInfo.controls['discount'].valid)}">
                   <label for="discount" translate>step1.form.labelDiscount</label>
                   <div class="input-group">
-                    <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount">
+                    <input [formControl]="discount" type="text" class="form-control with-success-addon" id="discount" [textMask]="{mask: discountMask}">
                     <span class="input-group-addon addon-right input-group-addon-success">%</span>
                   </div>
                 </div>
@@ -451,7 +451,13 @@
       </baWizzardStep>
       <baWizzardStep>
         <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                 baCardClass="traffic-panel"></ba-card>
+                 baCardClass="traffic-panel">
+          <div class="text-center"><h2 translate>step7.messageTitle</h2></div>
+          <div class="text-center"><h3 translate>step7.messageBody</h3></div>
+          <div class="text-center">
+            <button class="btn btn-success" (click)="onDone()">Submit</button>
+          </div>
+        </ba-card>
       </baWizzardStep>
     </baWizzard>
   </div>

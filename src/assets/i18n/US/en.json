@@ -54,5 +54,9 @@
     "cardTitle": "Aditions and Prices",
     "labelAll": "Select all additional available items",
     "labelAllforBron": "Select additional items available for reservation"
+  },
+  "step7":{
+    "messageTitle": "Congratulations!",
+    "messageBody": "Now your place is ready to be sent to Star Club administrators"
   }
 }
