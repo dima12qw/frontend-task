@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl} from '@angular/forms';
+import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl, Form} from '@angular/forms';
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
 import "style-loader!./login.scss";
 import {WizzardModel} from "./models/wizzard.model";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'login',
@@ -30,6 +31,10 @@ export class LoginComponent implements OnInit {
 
   };
 //step 5 Filter
+  filter;
+  filterKeys;
+  selectedFilters;
+  finalFilters = new Object();
   kitchenFilters;
   selectedKitchen;
   localTypeFilters;
@@ -44,6 +49,7 @@ export class LoginComponent implements OnInit {
   formLocInfo: FormGroup;
   formWorkHours: FormGroup;
   formContactData: FormGroup;
+  formFilter: FormGroup;
 //FormControls
 
   legal_name: AbstractControl;
@@ -124,28 +130,31 @@ export class LoginComponent implements OnInit {
       lat: [''],
       lng: ['']
     });
-
-this.formWizz = builder.group({
-  LocInfo: this.formLocInfo,
-  WorkHours: this.formWorkHours,
-  ContactData: this.formContactData
-});
-
-    this.mockData.getKitchenData().then((data) => {
-      this.kitchenFilters = data;
-    });
-    this.mockData.getFilterLocalType().then((data) => {
-      this.localTypeFilters = data;
+    this.formFilter = builder.group({
+      filters: this.finalFilters
     });
 
-    this.mockData.getTableFilterType().then((data) => {
-      this.tableTypeFilter = data;
+    this.formWizz = builder.group({
+      LocInfo: this.formLocInfo,
+      WorkHours: this.formWorkHours,
+      ContactData: this.formContactData
     });
 
-
-    this.mockData.getMenuSpecialTypes().then((data) => {
-      this.menuSpecialFilter = data;
-    });
+    // this.mockData.getKitchenData().then((data) => {
+    //   this.kitchenFilters = data;
+    // });
+    // this.mockData.getFilterLocalType().then((data) => {
+    //   this.localTypeFilters = data;
+    // });
+    //
+    // this.mockData.getTableFilterType().then((data) => {
+    //   this.tableTypeFilter = data;
+    // });
+    //
+    //
+    // this.mockData.getMenuSpecialTypes().then((data) => {
+    //   this.menuSpecialFilter = data;
+    // });
 
     this.mockData.getCategories().then((data) => {
       this.categories = data;
@@ -155,14 +164,17 @@ this.formWizz = builder.group({
       this.avgSums = data;
     });
 
-
+    this.mockData.getfilter().then((data) => {
+      this.filter = data;
+      console.log(data);
+      this.filterKeys = Object.keys(data);
+    });
   }
 
   ngOnInit() {
     this.mockData.getLegalName().then((data) => {
       this.formLocInfo.patchValue({legal_name: data})
     });
-    console.log(Object.keys(this.formWorkHours.controls));
 
     Object.keys(this.formWorkHours.controls).forEach((key) => {
       this.formWorkHours.get(key).patchValue({activity: this.activity['type1']});
@@ -220,13 +232,60 @@ this.formWizz = builder.group({
     })
   }
 
-  storeLocalStorage(form, string: string){
+  storeLocalStorage(form, string: string) {
     localStorage.setItem(string, JSON.stringify(form.value));
     form.reset();
   }
 
-  getFromLocalStorage(form, string: string){
+  getFromLocalStorage(form, string: string) {
     form.reset(JSON.parse(localStorage.getItem(string)));
+  }
+
+
+  changeFilter($event) {
+    console.log(this.selectedFilters);
+    console.log(this.finalFilters);
+
+    Object.keys(this.finalFilters).forEach((c) => {
+      let arr = this.selectedFilters.filter(v => v.label === c);
+      if (arr.length < 1) {
+        delete this.finalFilters[c];
+      }
+    })
+  }
+
+
+  changeFilters(event1, $event) {
+    // this.finalFilters.push({c: $event});
+    console.log(event1);
+    let k = event1;
+    let v = $event;
+    if (v.length > 0) {
+      let arr = [];
+      v.forEach(c => arr.push(c.label));
+      // console.log(v[0].label);
+      // v.forEach((v)l => {
+      //   // this.finalFilters = new Object({
+      //   //   filterType: k.label, values: v.label
+      //   // })
+      //   this.finalFilters[k.label] = v.label;
+      // });
+      this.finalFilters[k.label] = arr;
+    } else {
+      delete this.finalFilters[k.label];
+    }
+    // this.finalFilters = new Object({
+    //   values: v.filter((value) => {
+    //     value.label
+    //   }), filterTypes: k.label
+    // });
+    console.log(this.finalFilters);
+  }
+
+  onNextStep5() {
+    console.log(this.finalFilters);
+    this.formFilter.patchValue({filters: this.finalFilters});
+    this.storeLocalStorage(this.formFilter, 'step5');
   }
 
 }

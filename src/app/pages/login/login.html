@@ -85,18 +85,18 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep (onPrev)="getFromLocalStorage(formLocInfo, 'step1')" >
-        <ba-card cardTitle="step1.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+      <baWizzardStep (onPrev)="getFromLocalStorage(formLocInfo, 'step1')" (onNext)="storeLocalStorage(formWorkHours, 'step2')">
+        <ba-card cardTitle="step2.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
                 (ngSubmit)="onSubmitWorkHours(formWorkHours.value)">
             <div [formGroup]="formWorkHours.get('monday')" class="form-horizontal">
               <div class="form-group row">
-                <div class="offset-sm-3 col-sm-2">De la</div>
-                <div class="col-sm-2">Pina la</div>
+                <div class="offset-sm-3 col-sm-2" translate>step2.labelFrom</div>
+                <div class="col-sm-2" translate>step2.labelTo</div>
               </div>
               <div class="row">
-                <label for="monH" class="col-sm-2">"wHours.Monday"</label>
+                <label for="monH" class="col-sm-2" translate>step2.wHours.Monday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('monday').get('hStart').valid && !formWorkHours.get('monday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('monday').get('hStart')"
@@ -110,20 +110,23 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('monday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('monday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('monday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('monday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('monday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('monday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('tuesday')" class="form-horizontal">
               <div class="row">
-                <label for="tueH" class="col-sm-2">"wHours.Tuesday"</label>
+                <label for="tueH" class="col-sm-2" translate>step2.wHours.Tuesday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('tuesday').get('hStart').valid && !formWorkHours.get('tuesday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('tuesday').get('hStart')"
@@ -137,20 +140,21 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('tuesday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('wednesday')" class="form-horizontal">
               <div class="row">
-                <label for="wedH" class="col-sm-2">"wHours.Wednesday"</label>
+                <label for="wedH" class="col-sm-2" translate>step2.wHours.Wednesday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('wednesday').get('hStart').valid && !formWorkHours.get('wednesday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('wednesday').get('hStart')"
@@ -164,20 +168,20 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('thursday')" class="form-horizontal">
               <div class="row">
-                <label for="thurH" class="col-sm-2">"wHours.Thursday"</label>
+                <label for="thurH" class="col-sm-2" translate>step2.wHours.Thursday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('thursday').get('hStart').valid && !formWorkHours.get('thursday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('thursday').get('hStart')"
@@ -191,20 +195,20 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))" translate>step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('friday')" class="form-horizontal">
               <div class="row">
-                <label for="friH" class="col-sm-2">"wHours.Friday"</label>
+                <label for="friH" class="col-sm-2" translate>step2.wHours.Friday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('friday').get('hStart').valid && !formWorkHours.get('friday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('friday').get('hStart')"
@@ -218,20 +222,20 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))" translate>step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('saturday')" class="form-horizontal">
               <div class="row">
-                <label for="satH" class="col-sm-2">"wHours.Saturday"</label>
+                <label for="satH" class="col-sm-2" translate>step2.wHours.Saturday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('saturday').get('hStart').valid && !formWorkHours.get('saturday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('saturday').get('hStart')"
@@ -245,20 +249,20 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))" translate>step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
             </div>
             <div [formGroup]="formWorkHours.get('sunday')" class="form-horizontal">
               <div class="row">
-                <label for="sunH" class="col-sm-2">"wHours.Sunday"</label>
+                <label for="sunH" class="col-sm-2" translate>step2.wHours.Sunday</label>
                 <div class="form group col-sm-2"
                      [ngClass]="{'has-error  has-feedback': (!formWorkHours.get('sunday').get('hStart').valid && !formWorkHours.get('sunday').get('hStart').disabled)}">
                   <input [formControl]="formWorkHours.get('sunday').get('hStart')"
@@ -272,13 +276,13 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))">Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))" translate>step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))">Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))" translate>step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))">24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))" translate>step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -287,8 +291,8 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
-        <ba-card cardTitle="Contact Data" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+      <baWizzardStep (onPrev)="getFromLocalStorage(formWorkHours, 'step2')" (onNext)="storeLocalStorage(formContactData, 'step3')">
+        <ba-card cardTitle="step3.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <div class="row">
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -296,49 +300,50 @@
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cFirstName'].valid)}">
-                    <label for="first_name">"formContactData.fname"</label>
+                    <label for="first_name" translate>step3.formContactData.fname</label>
                     <input formControlName="cFirstName" type="text" class="form-control" id="first_name">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['cLastName'].valid)}">
-                    <label for="last_name">"formContactData.lname"</label>
+                    <label for="last_name" translate>step3.formContactData.lname</label>
                     <input formControlName="cLastName" type="text" class="form-control" id="last_name">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['phoneNumber'].valid)}">
-                    <label for="phone_number">"formContactData.phNumber"</label>
+                    <label for="phone_number" translate>step3.formContactData.phNumber</label>
                     <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['country'].valid)}">
-                    <label for="country">"formContactData.country"</label>
+                    <label for="country" translate>step3.formContactData.country</label>
                     <input formControlName="country" type="text" class="form-control" id="country">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['city'].valid)}">
-                    <label for="city">"formContactData.city"</label>
+                    <label for="city" translate>step3.formContactData.city</label>
                     <input formControlName="city" type="text" class="form-control" id="city">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['street'].valid)}">
-                    <label for="address">"formContactData.street"</label>
-                    <input formControlName="street" type="text" class="form-control" id="address"  autocorrect="off" autocapitalize="off" spellcheck="off">
+                    <label for="address" translate>step3.formContactData.street</label>
+                    <input formControlName="street" type="text" class="form-control" id="address" autocorrect="off"
+                           autocapitalize="off" spellcheck="off">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['postCode'].valid)}">
-                    <label for="post_code">"formContactData.postCode"</label>
+                    <label for="post_code" translate>step3.formContactData.postCode</label>
                     <input formControlName="postCode" type="text" class="form-control" id="post_code">
                     <input formControlName="lat" class="form-control" id="lat" hidden>
                     <input formControlName="lng" class="form-control" id="lng" hidden>
@@ -348,26 +353,40 @@
             </div>
             <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <div class="row">Map</div>
-                <ba-card>
-                  <google-maps (mapEvent)="mapClick($event)" (coordinates)="mapCoordinates($event)"></google-maps>
-                </ba-card>
+              <ba-card>
+                <google-maps (mapEvent)="mapClick($event)" (coordinates)="mapCoordinates($event)"></google-maps>
+              </ba-card>
 
             </div>
           </div>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
-        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+      <baWizzardStep (onPrev)="getFromLocalStorage(formContactData, 'step3')">
+        <ba-card cardTitle="step4.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture"
                                [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
+      <baWizzardStep (onNext)="onNextStep5()">
         <ba-card cardTitle="Filters" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <h1>Specificati caracteristicile localului</h1>
           <div class="class">
+            <a>Filtre</a>
+            <ng-select (change)="changeFilter($event)" [multiple]="true"
+                       [items]="filterKeys"
+                       [(ngModel)]="selectedFilters"
+                       placeholder="No filter selected"></ng-select>
+
+          </div>
+          <div class="class" *ngFor="let c of selectedFilters">
+            <a>{{c.label}}</a>
+            <ng-select [multiple]="true"
+                       [items]="filter[c.label]"
+            (change)="changeFilters(c, $event)"></ng-select>
+          </div>
+          <div class="class" *ngIf="kitchenFilters">
             <a>Bucatarie</a>
             <ng-select [multiple]="true"
                        [items]="kitchenFilters"
@@ -375,7 +394,7 @@
                        placeholder="No filter selected"></ng-select>
 
           </div>
-          <div class="class">
+          <div class="class" *ngIf="localTypeFilters">
             <a>Tip Local</a>
             <ng-select [multiple]="true"
                        [items]="localTypeFilters"
@@ -383,7 +402,7 @@
                        placeholder="No filter selected"></ng-select>
 
           </div>
-          <div class="class">
+          <div class="class" *ngIf="tableTypeFilter">
             <a>Tip Mese</a>
             <ng-select [multiple]="true"
                        [items]="tableTypeFilter"
@@ -391,7 +410,7 @@
                        placeholder="No filter selected"></ng-select>
 
           </div>
-          <div class="class">
+          <div class="class" *ngIf="menuSpecialFilter">
             <a>Menu Special</a>
             <ng-select [multiple]="true"
                        [items]="menuSpecialFilter"
