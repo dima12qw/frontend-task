@@ -11,5 +11,39 @@
       "labelDescriptionRO": "Description RO",
       "labelDescriptionRU": "Description RU"
     }
+  },
+  "step2":{
+    "cardTitle": "Working Hours",
+    "labelFrom": "From",
+    "labelTo": "To",
+    "wHours":{
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
+      "Sunday": "Sunday"
+    },
+    "buttonGroup":{
+      "Open": "Open",
+      "Closed": "Closed",
+      "24/24": "24/24"
+    }
+  },
+  "step3":{
+    "cardTitle": "Contact Date",
+    "formContactData":{
+      "fname": "First Name",
+      "lname": "Last Name",
+      "phNumber": "Phone Number",
+      "country": "Country",
+      "city": "City",
+      "street": "Street",
+      "postCode": "Post Code"
+    }
+  },
+  "step4":{
+    "cardTitle": "Photo Upload"
   }
 }
