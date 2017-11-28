@@ -18,6 +18,13 @@ export class MockdataService {
     'Special Menu Types': this.getMenuSpecialTypes()
   };
 
+  specialFilters = [
+    {icon: 'fa-bed', label: 'Cazare'},
+    {icon: 'fa-birthday-cake', label: 'Sarbatori cu meniu special'},
+    {icon: 'fa-umbrella', label: 'Terasa'},
+    {icon: 'fa-truck', label: 'Livrare prompta'},
+    {icon: 'fa-car', label: 'Parcare'}];
+
   getfilter(): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -26,7 +33,7 @@ export class MockdataService {
     });
   }
 
-  getKitchenData(){
+  getKitchenData() {
     return this.filterKitchenData;
   }
 
@@ -34,7 +41,7 @@ export class MockdataService {
     return this.filterLocalType;
   }
 
-  getTableFilterType(){
+  getTableFilterType() {
     return this.tableFilterType
   }
 
@@ -64,5 +71,13 @@ export class MockdataService {
         resolve(LEGAL_NAME);
       }, 2000);
     });
+  }
+
+  getSpecialFilter(): Promise<any>{
+    return new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        resolve(this.specialFilters);
+      }, 2000);
+    })
   }
 }
