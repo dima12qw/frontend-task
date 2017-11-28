@@ -1,7 +1,7 @@
 <ba-page-top></ba-page-top>
 <div class="auth-main">
   <div class="auth-block col-xl-8 col-lg-8 col-md-8 col-sm-8">
-    <baWizzard>
+    <baWizzard (setFormDone)="onDone()">
       <baWizzardStep (onNext)="storeLocalStorage(formLocInfo, 'step1')">
         <ba-card cardTitle="step1.cardTitle" class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
@@ -85,7 +85,8 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep (onPrev)="getFromLocalStorage(formLocInfo, 'step1')" (onNext)="storeLocalStorage(formWorkHours, 'step2')">
+      <baWizzardStep (onPrev)="getFromLocalStorage(formLocInfo, 'step1')"
+                     (onNext)="storeLocalStorage(formWorkHours, 'step2')">
         <ba-card cardTitle="step2.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <form [formGroup]="formWorkHours" class="form-horizontal offset-sm-1"
@@ -144,10 +145,12 @@
                     step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('tuesday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('tuesday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -168,13 +171,16 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('wednesday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('wednesday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('wednesday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -195,13 +201,16 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))" translate>step2.buttonGroup.Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('thursday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('thursday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('thursday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -222,13 +231,16 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))" translate>step2.buttonGroup.Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('friday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('friday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('friday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -249,13 +261,16 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))" translate>step2.buttonGroup.Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('saturday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('saturday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('saturday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -276,13 +291,16 @@
                 </div>
                 <div class="btn-group col-sm-4" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger"
-                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))" translate>step2.buttonGroup.Open
+                          (click)="onSelect(activity.type1,formWorkHours.get('sunday'))" translate>
+                    step2.buttonGroup.Open
                   </button>
                   <button type="button" class="btn btn-info"
-                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))" translate>step2.buttonGroup.Closed
+                          (click)="onSelect(activity.type2,formWorkHours.get('sunday'))" translate>
+                    step2.buttonGroup.Closed
                   </button>
                   <button type="button" class="btn btn-success"
-                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))" translate>step2.buttonGroup.24/24
+                          (click)="onSelect(activity.type3,formWorkHours.get('sunday'))" translate>
+                    step2.buttonGroup.24/24
                   </button>
                 </div>
               </div>
@@ -291,7 +309,8 @@
           </form>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep (onPrev)="getFromLocalStorage(formWorkHours, 'step2')" (onNext)="storeLocalStorage(formContactData, 'step3')">
+      <baWizzardStep (onPrev)="getFromLocalStorage(formWorkHours, 'step2')"
+                     (onNext)="storeLocalStorage(formContactData, 'step3')">
         <ba-card cardTitle="step3.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
           <div class="row">
@@ -370,9 +389,9 @@
         </ba-card>
       </baWizzardStep>
       <baWizzardStep (onNext)="onNextStep5()">
-        <ba-card cardTitle="Filters" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+        <ba-card cardTitle="step5.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                  baCardClass="traffic-panel">
-          <h1>Specificati caracteristicile localului</h1>
+          <h1 translate>step5.title</h1>
           <div class="class">
             <a>Filtre</a>
             <ng-select (change)="changeFilter($event)" [multiple]="true"
@@ -385,45 +404,50 @@
             <a>{{c.label}}</a>
             <ng-select [multiple]="true"
                        [items]="filter[c.label]"
-            (change)="changeFilters(c, $event)"></ng-select>
-          </div>
-          <div class="class" *ngIf="kitchenFilters">
-            <a>Bucatarie</a>
-            <ng-select [multiple]="true"
-                       [items]="kitchenFilters"
-                       [(ngModel)]="selectedKitchen"
-                       placeholder="No filter selected"></ng-select>
-
-          </div>
-          <div class="class" *ngIf="localTypeFilters">
-            <a>Tip Local</a>
-            <ng-select [multiple]="true"
-                       [items]="localTypeFilters"
-                       [(ngModel)]="selectedLocalType"
-                       placeholder="No filter selected"></ng-select>
-
-          </div>
-          <div class="class" *ngIf="tableTypeFilter">
-            <a>Tip Mese</a>
-            <ng-select [multiple]="true"
-                       [items]="tableTypeFilter"
-                       [(ngModel)]="selectedTableTypes"
-                       placeholder="No filter selected"></ng-select>
-
-          </div>
-          <div class="class" *ngIf="menuSpecialFilter">
-            <a>Menu Special</a>
-            <ng-select [multiple]="true"
-                       [items]="menuSpecialFilter"
-                       [(ngModel)]="selectedMenuTyps"
-                       placeholder="No filter selected"></ng-select>
-
+                       (change)="changeFilters(c, $event)"></ng-select>
           </div>
         </ba-card>
       </baWizzardStep>
-      <baWizzardStep>
-        <ba-card cardTitle="Location Info" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                 baCardClass="traffic-panel"></ba-card>
+      <baWizzardStep (onNext)="storeLocalStorage(formAditions, 'step6')">
+        <ba-card cardTitle="step6.cardTitle" class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
+                 baCardClass="traffic-panel">
+          <div class="form-group">
+            <a translate>step6.labelAll</a>
+            <ng-select [multiple]="true"
+                       [items]="specialFilters"
+                       [(ngModel)]="selectedSpecialFilters"
+                       placeholder="No filter selected"
+                       (change)="onChangeSpecialFilters($event)">
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <div class="ng-value-wrapper default">
+                  <span class="ng-value-label"><i class="fa {{item.icon}} fa-2x"></i>{{item.label}}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <i class="fa {{item.icon}} fa-2x">{{item.label}}</i>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <a translate>step6.labelAllforBron</a>
+            <ng-select [multiple]="true"
+                       [(items)]="selectedSpecialFilters"
+                       [(ngModel)]="selectedSpecialFilters2"
+                       placeholder="No filter selected"
+                       (change)="onChangeSpecialFilters2($event)">
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <div class="ng-value-wrapper default">
+                  <span class="ng-value-label"><i class="fa {{item.icon}} fa-2x"></i>{{item.label}}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <i class="fa {{item.icon}} fa-2x">{{item.label}}</i>
+              </ng-template>
+            </ng-select>
+          </div>
+        </ba-card>
       </baWizzardStep>
       <baWizzardStep>
         <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"

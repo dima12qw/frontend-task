@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl, Form} from '@angular/forms';
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
@@ -27,23 +27,16 @@ export class LoginComponent implements OnInit {
   };
   public uploaderOptions: NgUploaderOptions = {
     // url: 'http://website.com/upload'
-    url: 'http://radikal.ru/Img/SaveImg2',
-    method: 'POST',
-
+    url: '',
   };
 //step 5 Filter
   filter;
   filterKeys;
   selectedFilters;
   finalFilters = new Object();
-  kitchenFilters;
-  selectedKitchen;
-  localTypeFilters;
-  selectedLocalType;
-  tableTypeFilter;
-  selectedTableTypes;
-  menuSpecialFilter;
-  selectedMenuTyps;
+  specialFilters;
+  selectedSpecialFilters;
+  selectedSpecialFilters2;
 
   //FormGroups
   formWizz: FormGroup;
@@ -51,6 +44,7 @@ export class LoginComponent implements OnInit {
   formWorkHours: FormGroup;
   formContactData: FormGroup;
   formFilter: FormGroup;
+  formAditions: FormGroup;
 //FormControls
 
   legal_name: AbstractControl;
@@ -135,28 +129,20 @@ export class LoginComponent implements OnInit {
       filters: this.finalFilters
     });
 
+    this.formAditions=builder.group({
+      aditions: [''],
+      forBron: ['']
+    });
+
+
     this.formWizz = builder.group({
       LocInfo: this.formLocInfo,
       WorkHours: this.formWorkHours,
       ContactData: this.formContactData,
-      filterData: this.formFilter
+      filterData: this.formFilter,
+      aditionsData: this.formAditions
     });
 
-    // this.mockData.getKitchenData().then((data) => {
-    //   this.kitchenFilters = data;
-    // });
-    // this.mockData.getFilterLocalType().then((data) => {
-    //   this.localTypeFilters = data;
-    // });
-    //
-    // this.mockData.getTableFilterType().then((data) => {
-    //   this.tableTypeFilter = data;
-    // });
-    //
-    //
-    // this.mockData.getMenuSpecialTypes().then((data) => {
-    //   this.menuSpecialFilter = data;
-    // });
 
     this.mockData.getCategories().then((data) => {
       this.categories = data;
@@ -171,6 +157,10 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.filterKeys = Object.keys(data);
     });
+
+    this.mockData.getSpecialFilter().then((data) => {
+      this.specialFilters = data;
+    })
   }
 
   ngOnInit() {
@@ -265,22 +255,10 @@ export class LoginComponent implements OnInit {
     if (v.length > 0) {
       let arr = [];
       v.forEach(c => arr.push(c.label));
-      // console.log(v[0].label);
-      // v.forEach((v)l => {
-      //   // this.finalFilters = new Object({
-      //   //   filterType: k.label, values: v.label
-      //   // })
-      //   this.finalFilters[k.label] = v.label;
-      // });
       this.finalFilters[k.label] = arr;
     } else {
       delete this.finalFilters[k.label];
     }
-    // this.finalFilters = new Object({
-    //   values: v.filter((value) => {
-    //     value.label
-    //   }), filterTypes: k.label
-    // });
     console.log(this.finalFilters);
   }
 
@@ -290,4 +268,23 @@ export class LoginComponent implements OnInit {
     this.storeLocalStorage(this.formFilter, 'step5');
   }
 
+
+  onChangeSpecialFilters($event) {
+    console.log(this.selectedSpecialFilters.map(c => c.label));
+       this.selectedSpecialFilters = [...this.selectedSpecialFilters];
+       this.formAditions.patchValue({aditions: this.selectedSpecialFilters.map(c => c.label) });
+    // this.selectedSpecialFilters2 = [...this.selectedSpecialFilters2];
+  }
+
+  onChangeSpecialFilters2($event) {
+    console.log($event);
+    this.formAditions.patchValue({forBron: this.selectedSpecialFilters2.map(c => c.label)});
+    // this.selectedSpecialFilters = [...this.selectedSpecialFilters];
+    // this.selectedSpecialFilters2 = [...this.selectedSpecialFilters2];
+  }
+
+
+  onDone(){
+    console.log(this.formWizz.value);
+  }
 }

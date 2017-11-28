@@ -45,5 +45,14 @@
   },
   "step4":{
     "cardTitle": "Photo Upload"
+  },
+  "step5":{
+    "cardTitle": "Filters",
+    "title": "Specify the local characteristics"
+  },
+  "step6":{
+    "cardTitle": "Aditions and Prices",
+    "labelAll": "Select all additional available items",
+    "labelAllforBron": "Select additional items available for reservation"
   }
 }
