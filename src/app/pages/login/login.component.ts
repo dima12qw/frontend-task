@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   avgSums;
   isChecked: boolean = false;
   public mask = [/[0-2]/, /\d/, ':', /[0-5]/, /\d/];
+  public phoneMask = ['+', '3', '7', '3', ' ', /[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public activity: Object = {
     type1: 'Open', type2: 'Closed', type3: '24/24'
   }
@@ -137,7 +138,8 @@ export class LoginComponent implements OnInit {
     this.formWizz = builder.group({
       LocInfo: this.formLocInfo,
       WorkHours: this.formWorkHours,
-      ContactData: this.formContactData
+      ContactData: this.formContactData,
+      filterData: this.formFilter
     });
 
     // this.mockData.getKitchenData().then((data) => {

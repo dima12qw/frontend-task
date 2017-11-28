@@ -315,7 +315,8 @@
                   <div class="form-group"
                        [ngClass]="{'has-error  has-feedback': (!formContactData.controls['phoneNumber'].valid)}">
                     <label for="phone_number" translate>step3.formContactData.phNumber</label>
-                    <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number">
+                    <input formControlName="phoneNumber" type="text" class="form-control" id="phone_number"
+                           [textMask]="{mask: phoneMask}">
                   </div>
                 </div>
                 <div class="row">
