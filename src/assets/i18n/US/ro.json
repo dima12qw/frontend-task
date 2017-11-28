@@ -1,11 +1,62 @@
 {
   "step1":{
-    "cardTitle": "Informatii despre locatio",
+    "cardTitle": "Location Info",
     "form":{
       "labelLegalName": "Denumirea juridica",
       "labelCommercialName": "Denumirea comerciala",
-      "labelDiscount": "Reducere StarNet"
-
+      "labelDiscount": "Reducere Star Net",
+      "labelBron": "Activarea bronarii",
+      "labelCategory": "Categorie",
+      "labelAvgSum": "Selectati suma medie a comenzii unici",
+      "labelDescriptionRO": "Descriere RO",
+      "labelDescriptionRU": "Descriere RU"
     }
+  },
+  "step2":{
+    "cardTitle": "Grafic de lucru",
+    "labelFrom": "De la",
+    "labelTo": "Pina la",
+    "wHours":{
+      "Monday": "Luni",
+      "Tuesday": "Marti",
+      "Wednesday": "Miercuri",
+      "Thursday": "Joi",
+      "Friday": "Vineri",
+      "Saturday": "Simbata",
+      "Sunday": "Duminica"
+    },
+    "buttonGroup":{
+      "Open": "Deschis",
+      "Closed": "Inchis",
+      "24/24": "24/24"
+    }
+  },
+  "step3":{
+    "cardTitle": "Date de contact",
+    "formContactData":{
+      "fname": "Prenume",
+      "lname": "Nume",
+      "phNumber": "Numar de telefon",
+      "country": "Tara",
+      "city": "Oras",
+      "street": "Strada",
+      "postCode": "Cod Postal"
+    }
+  },
+  "step4":{
+    "cardTitle": "Incarca poze"
+  },
+  "step5":{
+    "cardTitle": "Filtre",
+    "title": "Specificati caracteristicile localului"
+  },
+  "step6":{
+    "cardTitle": "Aditions and Prices",
+    "labelAll": "Selectati toate elementele aditionale disponibile",
+    "labelAllforBron": "Selectati elementele aditionale disponibile pentru bronare"
+  },
+  "step7":{
+    "messageTitle": "Felicitari!",
+    "messageBody": "Acum localul dumneavoastra este gata de a fi trimis la administratorii Star Club"
   }
 }

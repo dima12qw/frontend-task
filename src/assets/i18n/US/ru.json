@@ -1,11 +1,62 @@
 {
   "step1":{
-    "cardTitle": "Location Info",
+    "cardTitle": "Информация о местоположении",
     "form":{
-      "labelLegalName": "Legal Name",
-      "labelCommercialName": "Commercial Name",
-      "labelDiscount": "Discount"
-
+      "labelLegalName": "Юридическое название",
+      "labelCommercialName": "Коммерческое название",
+      "labelDiscount": "Cкидка Star Net",
+      "labelBron": "Активация ??????",
+      "labelCategory": "категория",
+      "labelAvgSum": "Выберите среднее количество уникального заказа",
+      "labelDescriptionRO": "Описание RO",
+      "labelDescriptionRU": "Описание RU"
     }
+  },
+  "step2":{
+    "cardTitle": "Рабочее время",
+    "labelFrom": "От",
+    "labelTo": "до",
+    "wHours":{
+      "Monday": "понедельник",
+      "Tuesday": "вторник",
+      "Wednesday": "среда",
+      "Thursday": "Четверг",
+      "Friday": "пятница",
+      "Saturday": "суббота",
+      "Sunday": "Воскресенье"
+    },
+    "buttonGroup":{
+      "Open": "открыто",
+      "Closed": "Закрыто",
+      "24/24": "24/24"
+    }
+  },
+  "step3":{
+    "cardTitle": "Контактные данные",
+    "formContactData":{
+      "fname": "Имя",
+      "lname": "Фамилия",
+      "phNumber": "Номер телефона",
+      "country": "Страна",
+      "city": "город",
+      "street": "улица",
+      "postCode": "Почтовый код"
+    }
+  },
+  "step4":{
+    "cardTitle": "Загрузить фото"
+  },
+  "step5":{
+    "cardTitle": "фильтры",
+    "title": "Укажите локальные характеристики"
+  },
+  "step6":{
+    "cardTitle": "Дополнения и цены",
+    "labelAll": "Выберите все дополнительные доступные элементы",
+    "labelAllforBron": "Выберите дополнительные предметы для бронирования"
+  },
+  "step7":{
+    "messageTitle": "Поздравления!",
+    "messageBody": "Теперь ваше место готово к отправке администратору Star Club"
   }
 }
