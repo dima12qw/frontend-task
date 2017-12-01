@@ -29,7 +29,6 @@
         "../node_modules/fullcalendar/dist/fullcalendar.css",
         "../node_modules/handsontable/dist/handsontable.full.css",
         "../node_modules/ng2-slim-loading-bar/style.css",
-        "../node_modules/ng2-select/components/css/ng2-select.css",
         "app/theme/theme.scss",
         "styles.scss"
       ],

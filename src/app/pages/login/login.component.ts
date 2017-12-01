@@ -1,10 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, DoCheck, EventEmitter, NgZone, OnInit, Output} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators, FormControl, Form} from '@angular/forms';
 import {NgUploaderOptions} from "ngx-uploader/src/classes/ng-uploader-options.class";
 import {MockdataService} from "./services/mockdata.service";
 import "style-loader!./login.scss";
 import {WizzardModel} from "./models/wizzard.model";
 import {isNullOrUndefined} from "util";
+import {NgOption} from "@ng-select/ng-select";
 
 @Component({
   selector: 'login',
@@ -28,16 +29,19 @@ export class LoginComponent implements OnInit {
   };
   public uploaderOptions: NgUploaderOptions = {
     // url: 'http://website.com/upload'
-    url: '',
+    url: 'https://httpbin.org/anything',
   };
+
+  @Output() filterChange = new EventEmitter();
 //step 5 Filter
   filter;
   filterKeys;
   selectedFilters;
   finalFilters = new Object();
   specialFilters;
-  selectedSpecialFilters;
-  selectedSpecialFilters2;
+  selectedSpecialFilters: NgOption[] = [];
+  specialFilters2;
+  selectedSpecialFilters2: NgOption[] = [];
 
   //FormGroups
   formWizz: FormGroup;
@@ -58,7 +62,10 @@ export class LoginComponent implements OnInit {
   description_RU: AbstractControl;
   submitted: boolean = false;
 
-  constructor(builder: FormBuilder, protected mockData: MockdataService) {
+
+  constructor(builder: FormBuilder, protected mockData: MockdataService,
+              private zone: NgZone) {
+
     this.formLocInfo = builder.group({
       'legal_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'comercial_name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -130,7 +137,7 @@ export class LoginComponent implements OnInit {
       filters: this.finalFilters
     });
 
-    this.formAditions=builder.group({
+    this.formAditions = builder.group({
       aditions: [''],
       forBron: ['']
     });
@@ -175,6 +182,7 @@ export class LoginComponent implements OnInit {
 
     console.log(this.formWizz.value);
   }
+
 
   public onSubmit(values: Object): void {
     this.submitted = true;
@@ -271,21 +279,26 @@ export class LoginComponent implements OnInit {
 
 
   onChangeSpecialFilters($event) {
-    console.log(this.selectedSpecialFilters.map(c => c.label));
-       this.selectedSpecialFilters = [...this.selectedSpecialFilters];
-       this.formAditions.patchValue({aditions: this.selectedSpecialFilters.map(c => c.label) });
-    // this.selectedSpecialFilters2 = [...this.selectedSpecialFilters2];
+    this.specialFilters2 = [...this.selectedSpecialFilters.map((c) => {
+      return {
+        label: c.label,
+        icon: c.icon
+      }
+    })];
+    this.selectedSpecialFilters2 = [];
+    console.log(this.selectedSpecialFilters);
+    this.formAditions.patchValue({aditions: this.selectedSpecialFilters.map(c => c.label)});
+
   }
 
   onChangeSpecialFilters2($event) {
-    console.log($event);
     this.formAditions.patchValue({forBron: this.selectedSpecialFilters2.map(c => c.label)});
-    // this.selectedSpecialFilters = [...this.selectedSpecialFilters];
-    // this.selectedSpecialFilters2 = [...this.selectedSpecialFilters2];
   }
 
 
-  onDone(){
+  onDone() {
     console.log(this.formWizz.value);
   }
+
+
 }

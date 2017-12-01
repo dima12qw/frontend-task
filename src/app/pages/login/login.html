@@ -420,30 +420,30 @@
                        (change)="onChangeSpecialFilters($event)">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
                 <div class="ng-value-wrapper default">
-                  <span class="ng-value-label"><i class="fa {{item.icon}} fa-2x"></i>{{item.label}}</span>
+                  <span class="ng-value-label"><i class="fa {{item.icon}}"></i>{{item.label}}</span>
                   <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
                 </div>
               </ng-template>
               <ng-template ng-option-tmp let-item="item" let-index="index">
-                <i class="fa {{item.icon}} fa-2x">{{item.label}}</i>
+                <i class="fa {{item.icon}}">{{item.label}}</i>
               </ng-template>
             </ng-select>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="selectedSpecialFilters">
             <a translate>step6.labelAllforBron</a>
             <ng-select [multiple]="true"
-                       [(items)]="selectedSpecialFilters"
+                       [items]="specialFilters2"
                        [(ngModel)]="selectedSpecialFilters2"
                        placeholder="No filter selected"
                        (change)="onChangeSpecialFilters2($event)">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
                 <div class="ng-value-wrapper default">
-                  <span class="ng-value-label"><i class="fa {{item.icon}} fa-2x"></i>{{item.label}}</span>
+                  <span class="ng-value-label"><i class="fa {{item.icon}}"></i>{{item.label}}</span>
                   <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
                 </div>
               </ng-template>
               <ng-template ng-option-tmp let-item="item" let-index="index">
-                <i class="fa {{item.icon}} fa-2x">{{item.label}}</i>
+                <i class="fa {{item.icon}}">{{item.label}}</i>
               </ng-template>
             </ng-select>
           </div>

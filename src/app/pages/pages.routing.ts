@@ -7,10 +7,10 @@ import { ModuleWithProviders } from '@angular/core';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: 'home',
     loadChildren: 'app/pages/login/login.module#LoginModule'
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'home' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
